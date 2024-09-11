@@ -8,11 +8,12 @@ public class Assignment1 {
         int[] sequence3 = {1, 2,2,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2};
         int[] sequence4 = GenerateBits(4000);
         
+        System.out.println("Max Continuous Subsequences");
         System.out.println(
             "Sequence 1: " + MaxContinuousSubsequence(sequence1) + "\n" + java.util.Arrays.toString(sequence1) + "\n" +
             "Sequence 2: " + MaxContinuousSubsequence(sequence2) + "\n" + java.util.Arrays.toString(sequence2) + "\n" +
             "Sequence 3: " + MaxContinuousSubsequence(sequence3) + "\n" + java.util.Arrays.toString(sequence3) + "\n" +
-            "Sequence 4: " + MaxContinuousSubsequence(sequence4) + "\n" + sequence4.length + " bits"
+            "PsuedoRandom Sequence of Bits: " + MaxContinuousSubsequence(sequence4) 
         );
     }
 
