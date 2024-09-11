@@ -5,9 +5,8 @@ Another example: 2,5,5,1,11,11,11,3,5,5,5,5,4,7. Now your
 program should return 4, because there are 4 consecutive values (namely four 5’s) and
 there is no longer subsequence of equal values.*/
 
-import static org.junit.Assert.assertArrayEquals;
+//Junit tests for Assignment1.java 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 

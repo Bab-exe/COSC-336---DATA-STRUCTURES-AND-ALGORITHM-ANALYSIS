@@ -8,7 +8,7 @@ public class Assignment1 {
         int[] sequence3 = {1, 2,2,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2};
         int[] sequence4 = GenerateBits(4000);
         
-        System.out.println("Max Continuous Subsequences");
+        System.out.print("Max Continuous Subsequences");
         System.out.println(
             "\nSequence 1: " + MaxContinuousSubsequence(sequence1) +
             "\nSequence 2: " + MaxContinuousSubsequence(sequence2) +
