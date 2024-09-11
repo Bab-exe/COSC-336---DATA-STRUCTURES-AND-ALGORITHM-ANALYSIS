@@ -3,15 +3,24 @@ import java.util.Random;
 public class Assignment1 {
 
     public static void main(String[] args){
-        int[] arr = GenerateBits(4000);
-        System.out.println(java.util.Arrays.toString(arr));
-        System.out.println("Max Subsequence: " + MaxContinuousSubsequence(arr));
+        int[] sequence1 = {2, 5,5,1,11,11,11,3,5,5,5,5,4,7};
+        int[] sequence2 = {1, 0,0,1,1,1,0,0,0,1,1,1,1,0,1,0,1,0,1,1,0,1,1,1,1,0,1,1,0,1,0,1,0,1,0,1,0,0,0,0, 0,0,0,0,1};
+        int[] sequence3 = {1, 2,2,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2};
+        int[] sequence4 = GenerateBits(4000);
+        
+        System.out.println(
+            "Sequence 1: " + MaxContinuousSubsequence(sequence1) + "\n" + java.util.Arrays.toString(sequence1) + "\n" +
+            "Sequence 2: " + MaxContinuousSubsequence(sequence2) + "\n" + java.util.Arrays.toString(sequence2) + "\n" +
+            "Sequence 3: " + MaxContinuousSubsequence(sequence3) + "\n" + java.util.Arrays.toString(sequence3) + "\n" +
+            "Sequence 4: " + MaxContinuousSubsequence(sequence4) + "\n" + sequence4.length + " bits"
+        );
     }
 
     /** generates an array of bits using COUNT */
     public static int[] GenerateBits(final int COUNT){
         return GenerateBits(COUNT,new Random());
     }
+
     //exists for better looping
     public static int[] GenerateBits(final int COUNT,Random random){
         if (COUNT < 0) throw new IllegalArgumentException("Positive numbers only");
