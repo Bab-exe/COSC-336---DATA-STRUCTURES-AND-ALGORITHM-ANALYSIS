@@ -59,11 +59,13 @@ public class Assignment1UnitTests {
     }
 
     @Test public void CUSTOM(){
-       
-        
+        int[] x = {0,0,1,1,1,1,1,1,1,1,1,1,0,0};
+        int[] y = {0,1,1,1,1,1,1,1,1};
+
         assertEquals(1,Assignment1.MaxContinuousSubsequence(new int[100]));
-        
-        
+        assertEquals(10,Assignment1.MaxContinuousSubsequence(x));
+                
+
     }
 
     //tests if the random function is always different
