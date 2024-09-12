@@ -39,6 +39,7 @@ public class Assignment1UnitTests {
     }
 
     @Test
+    /** Tests weird cases like length of 0 ,all bits are the same etc */
     public void BaseCases(){
         assertEquals(
             0,
@@ -49,9 +50,11 @@ public class Assignment1UnitTests {
             1,
             Assignment1.MaxContinuousSubsequence(new int[]{0})
         );
+       
+        assertEquals(3,Assignment1.MaxContinuousSubsequence(new int[]{0,0,0}) );
 
         assertEquals(
-            1,
+            1000,
             Assignment1.MaxContinuousSubsequence(new int[1000])
         );
 
@@ -59,11 +62,15 @@ public class Assignment1UnitTests {
 
     @Test public void CUSTOM(){
         int[] x = {0,0,1,1,1,1,1,1,1,1,1,1,0,0};
-        int[] y = {0,1,1,1,1,1,1,1,1};
 
-        assertEquals(1,Assignment1.MaxContinuousSubsequence(new int[100]));
+        int[] end_case = {0,0,1,1,1};
+        int[] start_case = {1,1,1,0,0};
+
         assertEquals(10,Assignment1.MaxContinuousSubsequence(x));
                 
+        assertEquals(3,Assignment1.MaxContinuousSubsequence(start_case));
+
+        assertEquals(3,Assignment1.MaxContinuousSubsequence(end_case));
 
     }
 
@@ -80,9 +87,8 @@ public class Assignment1UnitTests {
         );
 
         assertEquals(java.util.Arrays.equals(arr1, arr2) ,false);
-        
-        
     }
+
 
 
 }

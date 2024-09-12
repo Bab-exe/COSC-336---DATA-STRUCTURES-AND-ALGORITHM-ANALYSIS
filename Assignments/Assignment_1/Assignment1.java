@@ -1,3 +1,4 @@
+/** Group Members: Tamir Krief, Iaian Milton, Blessing Abumere */
 import java.util.Random;
 
 public class Assignment1 {
@@ -22,7 +23,8 @@ public class Assignment1 {
         return GenerateBits(COUNT,new Random());
     }
 
-    //exists for better looping
+    
+    /** generates an arrays of bits of size {COUNT} and uses random object for the psuedorandom part*/
     public static int[] GenerateBits(final int COUNT,Random random){
         if (COUNT < 0) throw new IllegalArgumentException("Positive numbers only");
         
@@ -34,28 +36,37 @@ public class Assignment1 {
         
         return bits;
     }
-    /** returns the number of max continuous subsequence */
-    public static long MaxContinuousSubsequence(int[] bits){
+    /** returns the number of max continuous subsequence 
+     * BaseCase: Works by first checking if array length is 0 and returns 0 if it is  
+     * d[0]? : Initializes max and count to 1; Computed by checking if the current bit is the same as the last one; d[i] == d[i-1]
+     * O(n) : Starts array at index 1 and Loops through it and checks if the current bit is the same as the last one each time
+     *          if current bit is same as the last one then count goes up by 1
+     *          else: if the curret bit isnt the same as the last one then count and max are compared and count is reset to 1 
+     *              if count is greater than max then max is set to count
+    */
+    public static int MaxContinuousSubsequence(int[] bits){
         if (bits.length == 0) return 0; //base case
 
-        int max = 1; //must start at 1 for the base case of 1 element
-        int count = 0;
+        //initializes max and count to 1
+        int max = 1; 
+        int count = 1;
         
-        int last_bit = 0;
-
-        for (int b : bits){
-            if (b == last_bit) //if current bit is same as the last one then count goes up by 1
+        //goes through the array and checks if the current bit is the same as the last one
+        for (int i = 1 ; i < bits.length ; i++){
+            if (bits[i] == bits[i-1]) //if current bit is same as the last one then count goes up by 1
                 count++;
-            else{
-                //if count bigger than max then max = count and count gets reset
-                if (count > max)
+            else { 
+                if (count > max) //if count is greater than max then max is set to count
                     max = count;
 
-                last_bit = b; //set last bit to current value
-                count = 1; //reset count to 1
+                count = 1;
             }
+            
         }
 
+        //for the case of when every bit is the same
+        if (count > max)
+            max = count;
         
         
         return max;
