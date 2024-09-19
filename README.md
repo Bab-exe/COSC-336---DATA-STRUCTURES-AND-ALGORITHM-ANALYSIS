@@ -2,7 +2,7 @@
 ## Direct links to assignments and stuff
 
 
-| Assignments ([All Files](https://github.com/Bab-exe/COSC-336---DATA-STRUCTURES-AND-ALGORITHM-ANALYSIS/tree/Assignment-1/Assignments)) |  
+| Assignments ([All Files](https://github.com/Bab-exe/COSC-336---DATA-STRUCTURES-AND-ALGORITHM-ANALYSIS/tree/main/Assignments)) |  
 | - | 
 
 
