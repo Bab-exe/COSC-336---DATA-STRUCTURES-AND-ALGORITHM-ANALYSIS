@@ -6,8 +6,21 @@ import org.junit.Test;
  */
 public class Assignment2Task1UnitTests extends Assignment2Task1{
 
-    
-    
+    @Test 
+    public void ezTest(){
+        int[] arr = {1,2,3,4,5,6};
+        final int GIVEN = 6;
+
+        Assert.assertEquals(GIVEN, MaxIncreasingSubsequence(arr));
+    }
+
+    @Test 
+    public void weirdTest(){
+
+        int[] arr = {1,2,3, 0 , 1, 2 , 3 , 4};
+
+        Assert.assertEquals(5, MaxIncreasingSubsequence(arr));
+    }
     @Test
     /**  10,9,2,5,3,101,7,18. Output: 4, or for the bonus solution 4,(2,5,7,18) */
     public void test1(){
@@ -46,7 +59,7 @@ public class Assignment2Task1UnitTests extends Assignment2Task1{
             380 , 807 , 23 , 506 , 98 , 757 , 24};
 
         
-        Assert.assertEquals(10,MaxIncreasingSubsequence(seq3));
+        Assert.assertEquals(9,MaxIncreasingSubsequence(seq3));
         
     }
 }

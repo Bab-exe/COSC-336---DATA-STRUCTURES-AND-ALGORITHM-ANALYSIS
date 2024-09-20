@@ -13,9 +13,17 @@ public class Assignment2Task2UnitTests extends Assignment2Task2 {
     }
 
     @Test 
-    public void test2(){
+    public void eztest(){
         int[] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
         Assert.assertEquals(arr.length,MaxDecreasingSubsequence(arr));
+    }
+
+    @Test 
+    public void basecase(){
+        int[] arr = new int[0];
+
+        Assert.assertEquals(0,MaxDecreasingSubsequence(arr));
+        Assert.assertEquals(0,MaxDecreasingSubsequence(null));
     }
 }
