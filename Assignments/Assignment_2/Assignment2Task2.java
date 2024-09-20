@@ -3,9 +3,6 @@
 public class Assignment2Task2 {
     
     public static void main(String[] args){
-
-
-        DisplayResults();
         java.util.Scanner input = new java.util.Scanner(System.in);
 
         int[] user_sequence = Prompt_Sequence(input);
