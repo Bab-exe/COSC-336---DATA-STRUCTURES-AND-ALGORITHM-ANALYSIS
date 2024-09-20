@@ -8,6 +8,9 @@
 
 public class Assignment2Task1 {
 
+    //ADD input
+
+
 
     /** a program that computes the length of a longest increasing subsequence
  of a sequence of integers. * */
@@ -27,18 +30,12 @@ public class Assignment2Task1 {
                 if (arr[i] > arr[j]){ 
                     if (counts[j] + 1 > counts[i]) {
                         counts[i] = counts[j] + 1;
-                    }
-                        
+                    }        
                 }
-                
             }
             if (counts[i] > max_count){
                 max_count = counts[i];
-            }
-               
-            
-                      
-            
+            }            
         }
 
         

@@ -9,6 +9,13 @@ public class Assignment2Task2UnitTests extends Assignment2Task2 {
     public void test1() {
         final int GIVEN = 5;
         int[] arr = {4, 9, 2, 5, 3, 101, 7, 18, 2, 1};
-        Assert.assertEquals(GIVEN, Assignment2Task2.MaxDecreasingSubsequence(arr));
+        Assert.assertEquals(GIVEN, MaxDecreasingSubsequence(arr));
+    }
+
+    @Test 
+    public void test2(){
+        int[] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+
+        Assert.assertEquals(arr.length,MaxDecreasingSubsequence(arr));
     }
 }
