@@ -1,4 +1,4 @@
-/**Tamir Krief, Iaian Milton, Blessing Abumere */
+/**Tamir Krief, Iaian Milton, Blessing Abumere  */
 
 public class Assignment2Task2 {
     
