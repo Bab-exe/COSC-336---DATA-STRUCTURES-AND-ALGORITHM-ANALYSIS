@@ -11,7 +11,7 @@
     
  ### [Assignment 2](https://github.com/Bab-exe/COSC-336---DATA-STRUCTURES-AND-ALGORITHM-ANALYSIS/tree/main/Assignments/Assignment_2) 
 
- ### [Assignment 2](https://github.com/Bab-exe/COSC-336---DATA-STRUCTURES-AND-ALGORITHM-ANALYSIS/tree/main/Assignments/Assignment_3) 
+ ### [Assignment 3](https://github.com/Bab-exe/COSC-336---DATA-STRUCTURES-AND-ALGORITHM-ANALYSIS/tree/main/Assignments/Assignment_3) 
  
  
 
