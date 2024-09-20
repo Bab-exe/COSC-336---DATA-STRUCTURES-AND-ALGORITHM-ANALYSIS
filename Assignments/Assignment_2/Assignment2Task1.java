@@ -8,8 +8,6 @@
 
 public class Assignment2Task1 {
 
-   
-    
 
     /** a program that computes the length of a longest increasing subsequence
  of a sequence of integers. * */
@@ -19,7 +17,7 @@ public class Assignment2Task1 {
             return 0;
 
         int[] counts = new int[arr.length]; //keeps the counts of the corresponding arr
-            counts[0] = 1; // The first element is always an increasing subsequence of length 1
+            counts[0] = 1; //first element 
 
         
         int max_count = 1;
