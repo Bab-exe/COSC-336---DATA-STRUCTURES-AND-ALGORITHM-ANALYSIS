@@ -1,0 +1,113 @@
+\documentclass[12pt,letterpaper,final]{report}
+
+\begin{document}
+
+
+\fbox{
+\vbox{
+\begin{flushleft}
+Name \\  % authors' names
+COSC 336 \\  %class
+08/29/2024\\  % date
+\end{flushleft}
+\center{\Large{\textbf{Assignment 3 Exercise 1.}}}
+%\end{mdframed}
+} % end vbox
+} % end fbox
+\vline
+
+\noindent\textbf{Ex. 1a}  
+
+\[
+T(n) = 3T \, (\frac{n}{4}) + 3
+\]
+\[
+a = 3, \;  b = 4, \;  f(n) = 3 
+\]
+\noindent\textbf{Case 1:} $log_b\, a > k$ 
+ 
+\[
+T (n) = \Theta(n^{log_b \,a})
+\]
+\[
+ log_b \, a = log_4 \,3 
+\]
+
+\[
+\lim_{x\to\infty} \frac{n \; log_4 \,3}{3} = \infty
+\]
+
+\[
+n \; log_4 \,3  = \Omega (3) 
+\]
+
+\[
+T (n) = \Theta(n^{0.2642})
+\]
+\bigskip
+\bigskip
+\noindent\textbf{Ex. 1b}
+
+\[
+T(n) = 2T \, (\frac{n}{2}) + 3n
+\]
+
+\[
+a = 2, \;  b = 2, \;  f(n) = 3n, \; k = 1, \; p = 0
+\]
+
+\noindent\textbf{Case 2:} $log_b\, a = k$ 
+
+\[
+n^{log_2 2} = n  = \Theta 3n 
+\]
+
+\noindent\textbf{Case 2:} $p = 0 > -1 $ 
+
+\[
+T(n) = \Theta (n^k \;log^{p+1}  \; n)
+\]
+\[
+T(n) = \Theta (n \;log^{1}  \; n)
+\]
+\[
+T(n) = \Theta (n\;log \; n)
+\]
+
+\bigskip
+\bigskip
+\noindent\textbf{Ex. 1c}
+
+\[
+T(n) = 9T \, (\frac{n}{3}) + n^2 log\; n 
+\]
+
+\[
+a = 9, \;  b = 3, \;  f(n) = n^2 log\; n, \; k = 2, \; p = 1
+\]
+
+\noindent\textbf{Case 3:} Regularity  
+
+\[
+n^{log_9 3} = n^2  
+\]
+
+\[
+\lim_{x\to\infty} \frac{n^2 log n}{n^2}= \Omega(n^\epsilon)
+\]
+
+\noindent\textbf{Case 2:} $p = 1 > -1$ 
+
+\[
+T(n) = \Theta (n^k \;log^{p}  \; n)
+\]
+\[
+T(n) = \Theta (n^2 \;log^{1}  \; n)
+\]
+\[
+T(n) = \Theta (n^2\;log \; n)
+\]
+
+
+
+\end{document}
