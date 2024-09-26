@@ -79,7 +79,7 @@ public class Assignment3 {
 
     
 
-    //the books merge method //TODO: fix the shitty books version
+    //the books merge method //TODO: fix the books version
     public static void merge(int[] arr, int p ,int q , int r){
         if (arr.length <= 1 || p > r) return;
         
