@@ -1,18 +1,35 @@
-
+import java.io.FileReader;
+import java.util.Scanner;
 /**  */
 //L[I] < R[j]
 
 public class Assignment3 {
+    public static void main(String[] args){
+        System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
+        System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
+    }
 
-    //TODO: pairs method
-    public static int UP_Pairs(int[] arr){
-        return merge(arr, 0, arr.length / 2, arr.length) + 1;
+    public static int UP_Pairs(int[] arr){       
+        if (arr == null || arr.length < 2) return 0;
+
+        int[] L = new int[arr.length/2];
+        int[] R = new int[arr.length - L.length];
+
+        System.arraycopy(arr, 0, L, 0, L.length);
+        System.arraycopy(arr, L.length, R, 0, R.length);
+       
+        return (
+            UP_Pairs(L) +
+            UP_Pairs(R) +
+            merge(arr,0,arr.length/2,arr.length) 
+
+        );
         
     }
 
     
 
-    /** modified merge method to return UP pairs
+    /** modified merge method from book to return UP pairs
      * @param arr the main array
      * @param  p left index
      * @param  q middle index
@@ -20,14 +37,12 @@ public class Assignment3 {
      * @return UP pair count 
     */
     public static int merge(int[] arr, int p ,int q , int r){
-        if (arr == null || arr.length <= 1 || p > r) return 0; //if null or length less than 1 or left index bigger than right index,
-       
+        if (arr == null || arr.length <= 1 || p >= r) return 0; //if null or length less than 1 or left index bigger than right index,
+        System.err.println();
 
         //removed + 1 for left index cus book was using 1 based indexing for some reason
         int n1 = q - p ; 
         int n2 = r - q; 
-
-        int up_pairs = 0;
 
         int[] L = new int[n1];
         int[] R = new int[n2];
@@ -40,29 +55,27 @@ public class Assignment3 {
             R[j] = arr[q + j];
 
         //sorts L and R 
-        up_pairs += merge(L,0,n1/2,n1) ;
-        up_pairs += merge(R,0,n2/2,n2);
+        int pairs = merge(L,0,n1/2,n1) + merge(R,0,n2/2,n2) ;
         
-        //i is left index, j is right index, k is main array index
+        //i =left index, j = right index, k = main array index
         int i = 0;
         int j = 0;
-        int k = 0;
-
+        int k = p;
         while (i < n1 && j < n2) { 
             if (L[i] <= R[j]) {
+                System.err.print( "(" + L[i] + " " + R[j] + ") ");
                 arr[k] = L[i];
                 i = i + 1;
-            }
+            }    
             else {
                 arr[k] = R[j];
                 j = j + 1;
+                
             }
             k = k + 1;
         }
 
-        //since i is also how many in L are smaller than R everything in it is a guaranteed pair
-        up_pairs += i;
-
+        pairs += i;
         
         while (i < n1) {
             arr[k] = L[i];
@@ -77,14 +90,32 @@ public class Assignment3 {
             k++;
         }
 
-        return up_pairs;
+        return pairs;
     }
 
 
     
    
+    public static int[] inputFile(String filename) {
+        try (Scanner reader = new Scanner(new FileReader(filename))) {
+            // Read the number of elements
+            int n = reader.nextInt();
+
+            //reads ints
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = reader.nextInt();
+            }
 
 
+           
+            return arr;
+
+        }catch(java.io.FileNotFoundException e) {
+            System.err.println("File not found: '" + filename + "'");
+            return null;
+        }
+    } 
     
     
 }
