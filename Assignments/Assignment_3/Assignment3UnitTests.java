@@ -69,6 +69,24 @@ public class Assignment3UnitTests extends Assignment3{
     }
     
     @Test 
+    /** tests that input files UP pairs are correct */
+    public void TheTestTest(){
+        int[] input1 = inputFile("input-3.4.txt");
+        int[] input2 = inputFile("input-3.5.txt");
+        
+        Assert.assertEquals(
+            Brute_UP_Pairs(input1),
+            UP_Pairs(input1)
+        );
+
+        Assert.assertEquals(
+            Brute_UP_Pairs(input2),
+            UP_Pairs(input2)
+        );
+
+
+    }
+    @Test 
     /** Tests if input file is read correctly */
     public void InputFileTest(){
         int[] arr1 = inputFile("input-3.4.txt");
