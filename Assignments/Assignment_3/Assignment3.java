@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Assignment3 {
     public static void main(String[] args){
         System.err.println(UP_Pairs(new int[]{7,3,8,1,5}));
-        //248339 System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
-        //24787869 System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
+        System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
+        System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
     }
 
     public static int UP_Pairs(int[] arr){
@@ -41,17 +41,15 @@ public class Assignment3 {
             R[j] = A[MID + j];
 
         //sorts L and R
-        int pairs =merge(L,0,L.length) +merge(R,0,R.length);
+        int pairs = merge(L,0,L.length) + merge(R,0,R.length);
 
         //i =left index, j = right index, k = main array index
         int i = 0;
         int j = 0;
         int k = p;
         
-
         while (i < n1 && j < n2) { 
             if (L[i] <= R[j]) {
-                System.err.print( "(" + L[i] + " " + R[j] + ") ");
                 A[k++] = L[i++];       
                 pairs += n2 - j;
             }    

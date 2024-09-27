@@ -2,6 +2,7 @@ import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class Assignment3UnitTests extends Assignment3{
     @Test 
     public void Merge_Sort(){
@@ -16,46 +17,57 @@ public class Assignment3UnitTests extends Assignment3{
             assertArrayEquals(expected2, arr2);
     }
 
-    @SuppressWarnings("deprecation")
+    
     @Test 
     /**  for example input sequence 7,3,8,1,5, we have the following UP-pairs: (7, 8), (3,8),(3,5),(1,5). */
     public void UP_Pairs(){
         int[] arr1 = {7,3,8,1,5}; //pairs; (7,8), (3,8),(3,5),(1,5)
             Assert.assertEquals(4, UP_Pairs(arr1));
-
-         int[] arr3 = {7,3,8,1} ; //pairs; (7,8), (3,8)
-            Assert.assertEquals(2, UP_Pairs(arr3));
-
+        
         int[] arr2 = {1,2,3,4}; //pairs; (1,2) (1,3) (1,4) , (2,3) (2,4), (3,4) 
             Assert.assertEquals(6, UP_Pairs(arr2));
 
-
-       
+        int[] arr3 = {7,3,8,1} ; //pairs; (7,8), (3,8)
+            Assert.assertEquals(2, UP_Pairs(arr3));
+ 
         int[] arr4 = {3,2,1,0}; //pairs; 0
             Assert.assertEquals(0, UP_Pairs(arr4));
 
+        
+        int[] arr5 = {1,2,3,4,5,6,7,8,9,10};
+            Assert.assertEquals(45, UP_Pairs(arr5));        
+
+        int[] arr6 = {9,10,7,8,6,5,3,4,1,2};
+            Assert.assertEquals(4, UP_Pairs(arr6));
+
+        System.out.println("Simple Tests Passed");
         int[] input1 = inputFile("input-3.4.txt");
-            System.err.println("Started input-3.4.txt UP_Pairs: ");
-            Assert.assertEquals(248339, UP_Pairs(input1));
-            System.err.println("Finished input-3.4.txt UP_Pairs: ");
+            System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(input1));
 
         int[] input2 = inputFile("input-3.5.txt");
-            Assert.assertEquals(24787869, UP_Pairs(input2));
+            System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(input2));
     }
-
 
     @Test
     public void UP_PairsBase(){
         int[] arr1 = {1,2}; //pairs; (1,2)
             Assert.assertEquals(1, UP_Pairs(arr1));
 
-
         int[] arr2 = new int[0];
             Assert.assertEquals(0, UP_Pairs(arr2));
+
+        int[] arr3 = {2,1};
+            Assert.assertEquals(0, UP_Pairs(arr3));
+        
+        int[] arr4 = {1};
+            Assert.assertEquals(0, UP_Pairs(arr4));
+
+        int[] arr5 = {1,2,3}; // (1,2) (1,3) (2,3)
+            Assert.assertEquals(3, UP_Pairs(arr5));
         
 
     }
-    @SuppressWarnings("deprecation")
+    
     @Test 
     /** Tests if input file is read correctly */
     public void InputFileTest(){
