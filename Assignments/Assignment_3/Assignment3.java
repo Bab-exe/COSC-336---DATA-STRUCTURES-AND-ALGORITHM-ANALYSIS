@@ -1,11 +1,12 @@
+/** Tamir Krief, Iaian Milton, Blessing Abumere  */
+
+//key: L[I] < R[j]
 import java.io.FileReader;
 import java.util.Scanner;
-/**  */
-//L[I] < R[j]
 
 public class Assignment3 {
     public static void main(String[] args){
-        System.err.println(UP_Pairs(new int[]{7,3,8,1,5}));
+        System.err.println(UP_Pairs(new int[]{7,3,8,1,5}) + " UP pairs in [7,3,8,1,5]");
         System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
         System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
     }
@@ -13,8 +14,6 @@ public class Assignment3 {
     public static int UP_Pairs(int[] arr){
         return merge(arr,0,arr.length);
     }
-
-    
 
     /** modified merge method from book to return UP pairs
      * @param A the main array
@@ -24,10 +23,9 @@ public class Assignment3 {
     */
     public static int merge(int[] A, int p , int r){
         if (A == null || A.length <= 1 || p >= r) return 0; //if null or length less than 1 or left index bigger than right index,
-        //removed + 1 for left index cus book was using 1 based indexing for some reason
 
         final int MID = A.length/2;
-        final int n1 = MID - p  ; 
+        final int n1 = MID - p ; 
         final int n2 = r - MID; 
 
         int[] L = new int[n1];
@@ -73,7 +71,6 @@ public class Assignment3 {
    
     /** reads the file and converts it to an int array */
     public static int[] inputFile(String filename) {
-        
         try (Scanner input = new Scanner(new FileReader(filename))) {
 
             //size is the first number
