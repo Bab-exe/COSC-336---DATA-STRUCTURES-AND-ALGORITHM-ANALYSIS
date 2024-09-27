@@ -45,7 +45,6 @@ public class Assignment3 {
 
         // Merge process
         int i = 0, j = 0, k = p;
-
         while (i < n1 && j < n2) {
             if (L[i] < R[j]) {
                 pairs += n2 - j; // Count remaining elements in R
