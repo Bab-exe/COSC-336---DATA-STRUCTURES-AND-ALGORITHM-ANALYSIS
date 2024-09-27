@@ -5,116 +5,93 @@ import java.util.Scanner;
 
 public class Assignment3 {
     public static void main(String[] args){
-        System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
-        System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
+        System.err.println(UP_Pairs(new int[]{7,3,8,1,5}));
+        //248339 System.out.println("input-3.4.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.4.txt")));
+        //24787869 System.out.println("input-3.5.txt UP_Pairs: " + UP_Pairs(inputFile("input-3.5.txt")));
     }
 
-    public static int UP_Pairs(int[] arr){       
-        if (arr == null || arr.length < 2) return 0;
-
-        int[] L = new int[arr.length/2];
-        int[] R = new int[arr.length - L.length];
-
-        System.arraycopy(arr, 0, L, 0, L.length);
-        System.arraycopy(arr, L.length, R, 0, R.length);
-       
-        return (
-            UP_Pairs(L) +
-            UP_Pairs(R) +
-            merge(arr,0,arr.length/2,arr.length) 
-
-        );
-        
+    public static int UP_Pairs(int[] arr){
+        return merge(arr,0,arr.length);
     }
 
     
 
     /** modified merge method from book to return UP pairs
-     * @param arr the main array
+     * @param A the main array
      * @param  p left index
-     * @param  q middle index
      * @param  r right index
      * @return UP pair count 
     */
-    public static int merge(int[] arr, int p ,int q , int r){
-        if (arr == null || arr.length <= 1 || p >= r) return 0; //if null or length less than 1 or left index bigger than right index,
-        System.err.println();
-
+    public static int merge(int[] A, int p , int r){
+        if (A == null || A.length <= 1 || p >= r) return 0; //if null or length less than 1 or left index bigger than right index,
         //removed + 1 for left index cus book was using 1 based indexing for some reason
-        int n1 = q - p ; 
-        int n2 = r - q; 
+
+        final int MID = A.length/2;
+        final int n1 = MID - p  ; 
+        final int n2 = r - MID; 
 
         int[] L = new int[n1];
         int[] R = new int[n2];
 
-        //puts values in L and R from main array
+        //puts values in L and R from main Aay
         for (int i = 0; i < n1; i++)
-            L[i] = arr[p + i];
+            L[i] = A[p + i];
 
         for (int j = 0; j < n2; j++)
-            R[j] = arr[q + j];
+            R[j] = A[MID + j];
 
-        //sorts L and R 
-        int pairs = merge(L,0,n1/2,n1) + merge(R,0,n2/2,n2) ;
-        
+        //sorts L and R
+        int pairs =merge(L,0,L.length) +merge(R,0,R.length);
+
         //i =left index, j = right index, k = main array index
         int i = 0;
         int j = 0;
         int k = p;
+        
+
         while (i < n1 && j < n2) { 
             if (L[i] <= R[j]) {
                 System.err.print( "(" + L[i] + " " + R[j] + ") ");
-                arr[k] = L[i];
-                i = i + 1;
+                A[k++] = L[i++];       
+                pairs += n2 - j;
             }    
             else {
-                arr[k] = R[j];
-                j = j + 1;
-                
+                A[k++] = R[j++];
             }
-            k = k + 1;
+               
+                
         }
-
-        pairs += i;
         
         while (i < n1) {
-            arr[k] = L[i];
-            i++;
-            k++;
+            A[k++] = L[i++];
         }
        
-
         while (j < n2) {
-            arr[k] = R[j];
-            j++;
-            k++;
+            A[k++] = R[j++];
         }
 
         return pairs;
     }
-
-
-    
    
+    /** reads the file and converts it to an int array */
     public static int[] inputFile(String filename) {
-        try (Scanner reader = new Scanner(new FileReader(filename))) {
-            // Read the number of elements
-            int n = reader.nextInt();
+        
+        try (Scanner input = new Scanner(new FileReader(filename))) {
 
-            //reads ints
-            int[] arr = new int[n];
-            for (int i = 0; i < n; i++) {
-                arr[i] = reader.nextInt();
-            }
+            //size is the first number
+            final int n = input.nextInt();
 
-
-           
-            return arr;
-
+            //reads ints in the file
+            int[] A = new int[n];
+            for (int i = 0; i < n; i++) 
+                A[i] = input.nextInt();
+            
+            return A;
         }catch(java.io.FileNotFoundException e) {
             System.err.println("File not found: '" + filename + "'");
-            return null;
         }
+
+        return null;
     } 
     
     
