@@ -1,0 +1,72 @@
+\documentclass[12pt,letterpaper,final]{report}
+
+\begin{document}
+
+
+\fbox{
+\vbox{
+\begin{flushleft}
+Name \\  % authors' names
+COSC 336 \\  %class
+08/29/2024\\  % date
+\end{flushleft}
+\center{\Large{\textbf{Assignment 3 Exercise 1.}}}
+%\end{mdframed}
+} % end vbox
+} % end fbox
+\vline
+
+\noindent\textbf{Exercise 1.}  
+
+\textbf{}
+
+For each of the following functions, give a $\Theta(t(n))$ estimation with the simplest possible $t(n)$ (for example $3n^2 +5 n \log n = \Theta(n^2)$).
+
+\begin{enumerate}
+
+\item $13n^2 - 2n + 56$
+\newline $t(n) = \Theta(n^2)$
+
+\item $2.5 \log n + 2$
+\newline $t(n) = \Theta(\log n)$
+
+\item $n (12 + \log n)$
+\newline $n (12 + \log n) = 12n + n \log n$
+\newline $t(n) = \Theta(n \log n)$
+
+
+\item $1+2 + 3 + \ldots + 2n$
+\newline
+\newline $S_n = \frac{n(n + 1)}{2}$
+\newline $S_{2n} = \frac{2n(2n + 1)}{2}$
+\newline $\frac{2n(2n + 1)}{2} = n (2n +1) = {2n^2} + n$
+\newline $t(n) = \Theta(n^{2})$
+
+\item $1+2 + 3 + \ldots + n^2$
+\newline
+\newline $S_n = \frac{n(n + 1)}{2}$
+\newline $S_{n^2} = \frac{n^2(n^2 + 1)}{2}$
+\newline $\frac{n^2(n^2 + 1)}{2} = \frac{n^4 + n^2}{2}$
+\newline $t(n) = \Theta(n^{4})$
+
+\item $\log (n^3) + 10$
+\newline $\log (n^3) = 3\log n $
+\newline $t(n) = \Theta(\log n)$
+
+\item $\log(n^3) + n \log n$
+\newline $ \log (n^3) = 3 \log n $
+\newline $t(n) = \Theta(n \log n)$
+
+\item $n \log (n^3) + n \log n$
+\newline $ n \log (n^3) = 3n \log n $
+\newline $t(n) = \Theta(n \log n)$
+
+\item $2^{2 \log n} + 5n +1$
+\newline $2^{2 \log n} = (2^{\log n})^2 = n^2$
+\newline $t(n) = \Theta(n^{2})$
+
+\end{enumerate}
+\bigskip
+
+
+\end{document}
