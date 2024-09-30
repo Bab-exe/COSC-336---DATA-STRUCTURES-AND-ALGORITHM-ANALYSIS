@@ -1,0 +1,131 @@
+
+\documentclass[12pt,letterpaper,final]{report}
+
+\begin{document}
+
+
+\fbox{
+\vbox{
+\begin{flushleft}
+Name \\  % authors' names
+COSC 336 \\  %class
+08/29/2024\\  % date
+\end{flushleft}
+\center{\Large{\textbf{Assignment 3 Exercise 1.}}}
+%\end{mdframed}
+} % end vbox
+} % end fbox
+\vline
+
+\noindent\textbf{Exercise 1.}  
+
+\textbf{}
+
+For each of the following functions, give a $\Theta(t(n))$ estimation with the simplest possible $t(n)$ (for example $3n^2 +5 n \log n = \Theta(n^2)$).
+
+\begin{enumerate}
+
+\item $13n^2 - 2n + 56$
+\newline $t(n) = \Theta(n^2)$
+
+\item $2.5 \log n + 2$
+\newline $t(n) = \Theta(\log n)$
+
+\item $n (12 + \log n)$
+\newline $n (12 + \log n) = 12n + n \log n$
+\newline $t(n) = \Theta(n \log n)$
+
+
+\item $1+2 + 3 + \ldots + 2n$
+\newline
+\newline $S_n = \frac{n(n + 1)}{2}$
+\newline $S_{2n} = \frac{2n(2n + 1)}{2}$
+\newline $\frac{2n(2n + 1)}{2} = n (2n +1) = {2n^2} + n$
+\newline $t(n) = \Theta(n^{2})$
+
+\item $1+2 + 3 + \ldots + n^2$
+\newline
+\newline $S_n = \frac{n(n + 1)}{2}$
+\newline $S_{n^2} = \frac{n^2(n^2 + 1)}{2}$
+\newline $\frac{n^2(n^2 + 1)}{2} = \frac{n^4 + n^2}{2}$
+\newline $t(n) = \Theta(n^{4})$
+
+\item $\log (n^3) + 10$
+\newline $\log (n^3) = 3\log n $
+\newline $t(n) = \Theta(\log n)$
+
+\item $\log(n^3) + n \log n$
+\newline $ \log (n^3) = 3 \log n $
+\newline $t(n) = \Theta(n \log n)$
+
+\item $n \log (n^3) + n \log n$
+\newline $ 3n \log n + n \log n = 4n \log n $
+\newline $t(n) = \Theta(n \log n)$
+
+\item $2^{2 \log n} + 5n +1$
+\newline $2^{2 \log n} = (2^{\log n})^2 = n^2$
+\newline $t(n) = \Theta(n^{2})$
+
+\end{enumerate}
+\bigskip
+
+
+\textbf{Exercise 2.}  
+\begin{enumerate}
+\item Evaluate the following postfix arithmetic expression:  $10~3~4~-~5~*~/$
+
+\newline $10~3~4~-~5~*~/$
+\newline $ = 10~-1~5~*~/ $
+\newline $ = 10~-5~/ $
+\newline $ = -2 $
+
+
+
+\item Convert the following infix arithmetic expression to postfix notation: $(((2+3)*5)-15)$
+\newline 
+\newline $= (((2~3~+)*5)-~15)$
+\newline $= (((2~3~+) 5~*)-~15)$
+\newline $= (((2~3~+) 5~*) 15~-)$
+\newline $= 2~3~+~5~*~15~- $
+
+
+
+\end{enumerate}
+
+\bigskip
+
+
+\textbf{Exercise 3.}
+
+\begin{enumerate}
+\item Write the recurrence for the runtime $T_A(n)$ of algorithm A, and solve the recurrence to find a $\Theta( \cdot)$ estimation of $T_A(n)$.
+\newline
+\newline $T_A(n)= T_A (\frac{n}{2}) + O(1)$  
+\newline $ a = 1, \; b = 2, \; k = 0, \; p = 0; f(n) = 1, f(n) = \Theta (n^{k} \; log^p \; n)$
+\newline $a = b^k, \; T(n) = \Theta (n^{\log_b a} \; \log^{p + 1} n)$ 
+\newline $T(n) = \Theta (n^{\log_b a} \; \log^{p + 1} n)$
+\newline $T(n) = \Theta (n^{0} \log^{0+1} n)$
+\newline $T(n) = \Theta (\log n)$
+
+
+\item Write the recurrence for the runtime $T_B(n)$ of algorithm B, and solve the recurrence to find a $\Theta( \cdot)$ estimation of $T_B(n)$.
+\newline 
+\newline$T_B(n)= 2 T_B (\frac{n}{2}) + O(1)$  
+\newline $ a = 2, \; b = 2, \; k = 0, \; p = 0, \; f(n) = 1, \; f(n) = \Theta (n^{k} \; log^p \; n)$ 
+\newline $ a > b^k, \; T(n) = \Theta (n^{\log_b a} )$
+\newline $ T(n) = \Theta (n^1)$
+\newline $ T(n) = \Theta (n)$
+
+\item Which algorithm is faster? (Note: There is a huge difference between $T_A$ and $T_B$.)
+\newline
+Algorithm A is faster than Algorithm B logarithmic growth $\Theta (\log n)$ is much slower than linear time $\Theta(n)$
+
+
+\end{enumerate}
+\bigskip
+
+\textbf{Exercise 4.}
+\newline
+\newline $ T(n) = \Theta ((\log n)^2)$
+
+\end{document}
