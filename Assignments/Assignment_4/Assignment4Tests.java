@@ -2,18 +2,35 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class Assignment4Tests{
+public class Assignment4Tests extends CuttingRod{
     @Test 
     public void baseCase(){
-        
+        int[] empty = new int[0];
+            int[] optCut = extendedBottomUpCutRod(empty, empty.length);
+            int maxRevenue = optCut[empty.length];
+        Assert.assertEquals(0,maxRevenue);
+
+        int[] price1 = {1};
+            optCut = extendedBottomUpCutRod(price1, price1.length);
+            maxRevenue = optCut[price1.length];
+        Assert.assertEquals(1,maxRevenue);
     }
 
 
     @Test 
     /** Data set 1: 1,5,8,9,10,17,17,20,24,30. (This is the example on page 364) */
     public void DataSet1(){
+        int[] price1 = {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
+        int length1 = price1.length; //10
+
+        int[] optCut = extendedBottomUpCutRod(price1, length1);
         
+        int maxRevenue = optCut[length1];
+
+        Assert.assertEquals(10,maxRevenue);
         
+
+     
     }
 
 

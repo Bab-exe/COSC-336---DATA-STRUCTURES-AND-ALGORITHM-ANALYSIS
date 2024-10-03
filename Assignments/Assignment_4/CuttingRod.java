@@ -56,7 +56,6 @@ public class CuttingRod {
         System.out.println("\ninput-4.3.txt: ") ;
             printCutRodSolution(input4_3,input4_3.length);
 
-        
     }
 
     /** reads the file and converts it to an int array */
