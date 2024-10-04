@@ -74,11 +74,12 @@ public class Assignment4{
     
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        System.out.print("Enter the filename: ");
-        String filename = console.nextLine();
         
+        System.out.print("Enter the filename: ");
+            String filename = console.nextLine();        
         int[] prices = inputFile(filename);
         
+        console.close();
         if (prices == null) {
             System.out.println("Error reading the input file.");
             return;
@@ -87,5 +88,6 @@ public class Assignment4{
         int rodLength = prices.length;
         
         printCutRodSolution(prices, rodLength);
+        
     }
 }
