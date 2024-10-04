@@ -76,7 +76,7 @@ public class Assignment4{
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         
-        System.out.print("Enter the filename: ");
+        System.out.print("Enter the filename: "); //input-4.2.txt or input-4.3.txt
             String filename = console.nextLine();        
         int[] prices = inputFile(filename);
         
