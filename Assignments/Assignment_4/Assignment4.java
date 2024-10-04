@@ -2,6 +2,7 @@
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Assignment4{
     /** reads the file and converts it to an int array */
@@ -16,7 +17,7 @@ public class Assignment4{
                 A[i] = console.nextInt();
             
             return A;
-        }catch(java.io.FileNotFoundException e) {
+        }catch(FileNotFoundException e) {
             System.err.println("File not found: '" + filename + "'");
         }
 

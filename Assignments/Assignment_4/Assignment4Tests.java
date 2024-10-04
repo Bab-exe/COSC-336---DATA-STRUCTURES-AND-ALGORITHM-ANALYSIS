@@ -21,13 +21,16 @@ public class Assignment4Tests extends Assignment4{
     /** Data set 1: 1,5,8,9,10,17,17,20,24,30. (This is the example on page 364) */
     public void DataSet1(){
         int[] price1 = {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
-        int length1 = price1.length; //10
 
-        int[] optCut = extBottomUpCutRod(price1, length1);
+        int[] optCut = extBottomUpCutRod(price1, price1.length);
         
-        int maxRevenue = optCut[optCut.length-1]; //??
+        int maxRevenue = optCut[optCut.length-1]; //?? 
 
         Assert.assertEquals(10,maxRevenue);
+
+
+        System.err.print("DataSet1 Passed");
+        printCutRodSolution(price1, price1.length);
         
     }
 
@@ -51,5 +54,14 @@ public class Assignment4Tests extends Assignment4{
             //first and last val test
             Assert.assertEquals(3,arr4_3[0]);
             Assert.assertEquals(4,arr4_3[arr4_3.length-1]);
+
+        System.err.println("File Tests Passed");
+
+        System.err.print("input-4.2.txt: ");
+            printCutRodSolution(arr4_2, arr4_2.length);
+
+        System.err.print("input-4.3.txt: ");
+            printCutRodSolution(arr4_3, arr4_3.length);
+
     }
 }
