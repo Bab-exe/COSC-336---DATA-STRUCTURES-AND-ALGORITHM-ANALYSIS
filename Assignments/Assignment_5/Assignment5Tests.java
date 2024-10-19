@@ -3,36 +3,50 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class Assignment5Tests extends Assignment5 {
+    public int sumArray(int[] A){
+        int sum = 0;
+        System.err.println();
+        for (int i = 0; i < A.length; i++) {
+            System.err.printf("%d %c ",A[i],
+                (i  == A.length - 1 )? 0 : '+' 
+            );
+            sum += A[i];
+        }
+        System.err.println("= " + sum);
+        return sum;
+
+    }
+
     @Test
     /**  For example, for sequence 1,14,5,6,2,3, the increasing subsequence 1,14 has the largest
  sum 1+14 = 15. (1,5,6 is another increasing subsequence but its sum, 1 + 5 + 6 = 12 is
  smaller.) */
-    public void seq1(){
+    public void GivenSequence(){
         int[] arr = {1,14,5,6,2,3};
-            final int expected = 15;
+            final int expected = 1 + 14;
 
         assertEquals(expected, sumIncreasingSubsequence(arr));
 
     }
 
     @Test
-    /** custom tests to be sure */
-    public void EzTests(){
-        int[] seq1 = {1,2,3,4,5};
-            final int expected1 = 1 + 2 + 3 + 4 + 5;
-        assertEquals(expected1, sumIncreasingSubsequence(seq1));
+    public void FileSequences(){
+        final int answer5_1 = 16;
+           assertEquals(answer5_1, sumIncreasingSubsequence(inputFile("input-5.1.txt")));
 
-        int[] seq2 = {5,6,4,3,2,1}; 
-            final int expected2 = 5 + 6;
-        assertEquals(expected2, sumIncreasingSubsequence(seq2));
-
-        
-
+        final int answer5_2 = 134366;
+            assertEquals(answer5_2, sumIncreasingSubsequence(inputFile("input-5.2.txt")));
     }
 
     @Test
-    public void HardTests(){
-
+    public void customTests(){
+        int[] seq1 = {1,5,6,2,3};
+            final int expected1 = 1 + 5 + 6;
+        assertEquals(expected1, sumIncreasingSubsequence(seq1));
+        
+        int[] seq2 = {0,0,0,55,0,0,0,793};
+            final int expected2 = 55 + 793;
+        assertEquals(expected2, sumIncreasingSubsequence(seq2));
     }
 
     @Test
@@ -52,6 +66,16 @@ public class Assignment5Tests extends Assignment5 {
         int[] seq4 = {};
             final int expected4 = 0;
         assertEquals(expected4, sumIncreasingSubsequence(seq4));
+
+        int[] seq5 = {1,2,3,4,5};
+            final int expected5 = 1 + 2 + 3 + 4 + 5;
+        assertEquals(expected5, sumIncreasingSubsequence(seq5));
+
+        int[] seq6 = {5,6,4,3,2,1}; 
+            final int expected6 = 5 + 6;
+        assertEquals(expected6, sumIncreasingSubsequence(seq6));
+
+        
     }
 
     @Test

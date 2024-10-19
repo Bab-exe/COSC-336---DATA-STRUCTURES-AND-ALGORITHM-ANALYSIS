@@ -46,6 +46,11 @@ public class Assignment5 {
         return null;
     } 
 
+    /** calculates the sum of the increasing subsequence ; doesnt have to be continuous 
+     * @param A the array of numbers
+     * @return the max sum
+     * TODO: make function pass input5_1 test
+     */
     static public int sumIncreasingSubsequence(int[] A){
         int maxSum = 0;
         int sum = 0;
@@ -53,8 +58,8 @@ public class Assignment5 {
         for (int i = 0; i < A.length; i++) {
             value = A[i];
             sum = value;
-            for (int j = i+1; j < A.length; j++) {
-                if (A[j] > value) //if the next number is greater than the current number then the number is  added and value is changed to the next number                    
+            for (int j = 0; j < i; j++) {
+                if (A[j] >= value) //if the next number is greater than the or equal current number then the number is  added and value is changed to the next number                    
                     sum += value = A[j];            
             }
             if (sum > maxSum) 
