@@ -53,13 +53,13 @@ public class Assignment5 {
      */
     static public int sumIncreasingSubsequence(int[] A){
         int maxSum = 0;
-        int sum = 0;
-        int value;
+        int sum, value;
+
         for (int i = 0; i < A.length; i++) {
-            value = A[i];
-            sum = value;
+            sum = value = A[i];
+            
             for (int j = i+1; j < A.length; j++) {
-                if (A[j] >= value) //if the next number is greater than the or equal current number then the number is  added and value is changed to the next number                    
+                if (value <= A[j]) //if the next number is greater than the or equal current number then the number is  added and value is changed to the next number                    
                     sum += value = A[j];            
             }
             if (sum > maxSum) 
