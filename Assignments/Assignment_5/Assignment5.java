@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -54,17 +55,30 @@ public class Assignment5 {
     static public int sumIncreasingSubsequence(int[] A){
         int maxSum = 0;
         int sum, value;
+        int[] sumArray = new int[0];
+        int[] tempSumArray;
 
         for (int i = 0; i < A.length; i++) {
             sum = (value = A[i]);
-            
-            for (int j = i+1; j < A.length; j++) {
-                if (value <= A[j]) //if the next number is greater than the or equal current number then the number is  added and value is changed to the next number                    
-                    sum += (value = A[j]);            
+            tempSumArray = new int[A.length - i];
+                tempSumArray[0] = value;
+
+            for (int s = 1,j = i+1; j < A.length; j++,s++) {
+                //if the next number is greater than the or equal current number then the number is added and value is changed to the next number                    
+                if (value <= A[j]){
+                    sum += (value = A[j]); 
+                    tempSumArray[s] = value;  
+                }
             }
-            if (sum > maxSum) 
+            if (sum > maxSum){
+                sumArray = new int[tempSumArray.length];
+                System.arraycopy(tempSumArray,0,sumArray,0,tempSumArray.length);
                 maxSum = sum;
+            }
+                
         }
+
+        System.err.println(maxSum + " = Summation Array: " + Arrays.toString(sumArray));
         return maxSum;
 
 

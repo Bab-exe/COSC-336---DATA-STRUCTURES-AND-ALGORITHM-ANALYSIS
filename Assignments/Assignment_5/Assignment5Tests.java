@@ -3,18 +3,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class Assignment5Tests extends Assignment5 {
-    public int sumArray(int[] A){
-        int sum = 0;
-        System.err.println();
-
-        for (int i = 0; i < A.length; i++) {
-            System.err.print(A[i] + " ");
-            sum += A[i];
-        }
-        System.err.println("= " + sum);
-        return sum;
-
-    }
+    
 
     @Test
     /**  For example, for sequence 1,14,5,6,2,3, the increasing subsequence 1,14 has the largest
@@ -29,15 +18,15 @@ public class Assignment5Tests extends Assignment5 {
     }
     /**  */
     @Test 
-    public void input5_1(){
-        final int answer5_1 = sumArray(inputFile("answer-5.1.txt"));
-           assertEquals(answer5_1, sumIncreasingSubsequence(inputFile("input-5.1.txt")));
+    public void input_5_1(){
+        final int ANSWER_5_1 = 1 + 5 + 5 + 5; //16
+           assertEquals(ANSWER_5_1, sumIncreasingSubsequence(inputFile("input-5.1.txt")));
     }
 
     @Test 
-    public void input5_2(){
-        final int answer5_2 = 134366;
-        assertEquals(answer5_2, sumIncreasingSubsequence(inputFile("input-5.2.txt")));
+    public void input_5_2(){
+        final int ANSWER_5_2 = 134366; 
+        assertEquals(ANSWER_5_2, sumIncreasingSubsequence(inputFile("input-5.2.txt")));
     }
    
 
