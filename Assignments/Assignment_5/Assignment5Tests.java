@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class Assignment5Tests extends Assignment5 {
     
-
+   
     @Test
     /**  For example, for sequence 1,14,5,6,2,3, the increasing subsequence 1,14 has the largest
  sum 1+14 = 15. (1,5,6 is another increasing subsequence but its sum, 1 + 5 + 6 = 12 is
@@ -32,13 +32,17 @@ public class Assignment5Tests extends Assignment5 {
 
     @Test
     public void customTests(){
-        int[] seq1 = {1,5,6,2,3};
-            final int expected1 = 1 + 5 + 6;
+        int[] seq1 = {1,5,6,2,3,4,7};
+            final int expected1 = 1 + 5 + 6 + 7;
         assertEquals(expected1, sumIncreasingSubsequence(seq1));
         
         int[] seq2 = {0,0,0,55,0,0,0,793};
             final int expected2 = 55 + 793;
         assertEquals(expected2, sumIncreasingSubsequence(seq2));
+
+        int[] seq3 = {1,0,0,0,14,0,0,5,6,2,3,9};
+            final int expected3 = 1 + 5 + 6 + 9;
+        assertEquals(expected3, sumIncreasingSubsequence(seq3));
     }
 
     @Test
