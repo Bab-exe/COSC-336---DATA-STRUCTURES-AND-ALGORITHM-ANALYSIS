@@ -56,11 +56,11 @@ public class Assignment5 {
         int sum, value;
 
         for (int i = 0; i < A.length; i++) {
-            sum = value = A[i];
+            sum = (value = A[i]);
             
             for (int j = i+1; j < A.length; j++) {
                 if (value <= A[j]) //if the next number is greater than the or equal current number then the number is  added and value is changed to the next number                    
-                    sum += value = A[j];            
+                    sum += (value = A[j]);            
             }
             if (sum > maxSum) 
                 maxSum = sum;
