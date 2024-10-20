@@ -63,7 +63,7 @@ public class Assignment5 {
             tempSumArray = new int[A.length - i];
                 tempSumArray[0] = value;
 
-            for (int s = 1,j = i+1; j < A.length; j++,s++) {
+            for (int s = 1,j = i+1; j < A.length; j++,s++) { //s is the index of the tempSumArray and j is the index of the number after value
                 //if the next number is greater than the or equal current number then the number is added and value is changed to the next number                    
                 if (value <= A[j]){
                     sum += (value = A[j]); 
