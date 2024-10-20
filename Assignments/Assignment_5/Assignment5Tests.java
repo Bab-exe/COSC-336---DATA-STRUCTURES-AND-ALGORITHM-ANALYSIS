@@ -6,10 +6,9 @@ public class Assignment5Tests extends Assignment5 {
     public int sumArray(int[] A){
         int sum = 0;
         System.err.println();
+
         for (int i = 0; i < A.length; i++) {
-            System.err.printf("%d %c ",A[i],
-                (i  == A.length - 1 )? 0 : '+' 
-            );
+            System.err.print(A[i] + " ");
             sum += A[i];
         }
         System.err.println("= " + sum);
@@ -28,15 +27,19 @@ public class Assignment5Tests extends Assignment5 {
         assertEquals(expected, sumIncreasingSubsequence(arr));
 
     }
-
-    @Test
-    public void FileSequences(){
-        final int answer5_1 = 16;
+    /**  */
+    @Test 
+    public void input5_1(){
+        final int answer5_1 = sumArray(inputFile("answer-5.1.txt"));
            assertEquals(answer5_1, sumIncreasingSubsequence(inputFile("input-5.1.txt")));
-
-        final int answer5_2 = 134366;
-            assertEquals(answer5_2, sumIncreasingSubsequence(inputFile("input-5.2.txt")));
     }
+
+    @Test 
+    public void input5_2(){
+        final int answer5_2 = 134366;
+        assertEquals(answer5_2, sumIncreasingSubsequence(inputFile("input-5.2.txt")));
+    }
+   
 
     @Test
     public void customTests(){
