@@ -23,8 +23,23 @@ public class Assignment5 {
 
     public static void main(String[] args) {
         int[] seq1 = {1,14,5,6,2,3};
+            sumIncreasingSubsequence(seq1);
 
-        System.out.println(sumIncreasingSubsequence(seq1));
+        int[] input5_1 = inputFile("input-5.1.txt");
+        System.out.println("\ninput-5.1.txt");
+            sumIncreasingSubsequence(input5_1);
+
+        int[] input5_2 = inputFile("input-5.2.txt");
+        System.out.println("\ninput-5.2.txt");
+            sumIncreasingSubsequence(input5_2);
+
+        int[] input5_3 = inputFile("input-5.3.txt");
+        System.out.println("\ninput-5.3.txt");
+            sumIncreasingSubsequence(input5_3);
+
+        int[] input5_4 = inputFile("input-5.4.txt");
+        System.out.println("\ninput-5.4.txt");
+            sumIncreasingSubsequence(input5_4);
     }
 
 
@@ -50,7 +65,7 @@ public class Assignment5 {
     /** calculates the sum of the increasing subsequence ; doesnt have to be continuous 
      * @param A the array of numbers
      * @return the max sum
-     * TODO: make function pass input5_1 test
+     * TODO: make function pass input5_1 test; right now it just going in order. Does not work correctly for the case of when i < i+2 < i+1 
      */
     static public int sumIncreasingSubsequence(int[] A){
         int maxSum = 0;
@@ -71,6 +86,7 @@ public class Assignment5 {
                     sum += value;
                     tempSumArray[s] = value;  
                 }
+                
             }
             if (sum > maxSum){
                 sumArray = new int[tempSumArray.length];
