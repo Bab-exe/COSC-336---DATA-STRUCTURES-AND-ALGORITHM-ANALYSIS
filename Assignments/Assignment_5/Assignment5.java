@@ -2,22 +2,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-
-/** The input consists of a sequence of numbers a[1],a[2,]...,a[n]. Your task is to design
- an O(n^2) algorithm that finds an increasing subsequence with the maximum possible sum.
- An increasing subsequence is given by a sequence of indices 1 ≤ i1 < i2 < ... < ik ≤ n
- such that a[i1] ≤ a[i2] ≤ ... ≤ a[ik]. Note the the indices defining the subsequence are not
- necessarily consecutive numbers. The program will output the max sum and the increasing
- subsequence with that sum.
- Your algorithm should work in time O(n2).
- For example, for sequence 1,14,5,6,2,3, the increasing subsequence 1,14 has the largest
- sum 1+14 = 15. (1,5,6 is another increasing subsequence but its sum, 1 + 5 + 6 = 12 is
- smaller.)
- Input specification: the first line contains n and the second line contains a1,...,an.
- Numbers on the same line are separated by spaces. You may assume that n is not bigger
- than 10,000 and all the numbers fit in int. */
-
-
 public class Assignment5 {
 
     public static void main(String[] args) {
@@ -31,7 +15,6 @@ public class Assignment5 {
             System.out.println("input-5.3.txt: " + sumIncreasingSubsequence(inputFile("input-5.3.txt")));
 
             System.out.println("input-5.4.txt: " + sumIncreasingSubsequence(inputFile("input-5.4.txt")));
-
     }
 
 
@@ -53,10 +36,8 @@ public class Assignment5 {
 
         return null;
     } 
-
-
     
-    //the first version that was made from not reading all the directions
+    //the first version that was made from not reading all the directions delete when finished 
     /** calculates the sum of the increasing subsequence ; doesnt have to be continuous 
      * @param A the array of numbers
      * @return the max sum
@@ -121,10 +102,8 @@ public class Assignment5 {
             s[i] = A[i]; //the starting sum of A[i] which is whatever the first number from i is
            
             for (int j = 0; j < i; j++) { //from left to whatever index i is ; j is an index to the left of i
-                if (A[j] <= A[i] && s[j] + A[i] >= s[i]) {  // if A[j] is less than or equal to A[i] and the sum of the subsequence ending at j plus A[i] is greater than the sum of the subsequence ending at i
-                    s[i] = s[j] + A[i] ; //sum is recalculated and left index of i is added to A[i]
-                   
-                }
+                if (A[j] <= A[i] && s[j] + A[i] >= s[i])  // if A[j] is less than or equal to A[i] and the sum of the subsequence ending at j plus A[i] is greater than the sum of the subsequence ending at i
+                    s[i] = s[j] + A[i] ; //sum is recalculated and left index of i is added to A[i]   
             }
             if (s[i] > maxSum)
                 maxSum = s[i];
