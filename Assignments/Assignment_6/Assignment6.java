@@ -2,6 +2,37 @@
 /** Since only 2 files are submitted (pdf and .java) all classes are stuffed into this file */
 
 
+
+
+public class Assignment6 {
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+
+
+        // Creating the following BST
+        //      50
+        //     /  \
+        //    30   70
+        //   / \   / \
+        //  20 40 60 80
+
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+        
+
+
+        
+        // Print inorder traversal of the BST
+        tree.inorder();
+        
+    }
+}
 class BinarySearchTree {
     private Node root;
     private int height;
@@ -20,12 +51,12 @@ class BinarySearchTree {
 
     private Node insert(Node root, int key) {        
         if (root == null) root = new Node(key); //basecase
-       
+        
         if (key < root.key) root.left = insert(root.left, key);
         if (key > root.key) root.right = insert(root.right, key);
         return root;   
     }
- 
+    
     public Node search(int key) {
         return search(this.root, key);
     }
@@ -55,11 +86,10 @@ class BinarySearchTree {
     }
 
     public Node delete(Node root, int x) {
-      
+        
         // Base case
         if (root == null) return root;
-        
-
+    
         // If key to be searched is in a subtree
         if (root.key > x) {
             root.left = delete(root.left, x);
@@ -78,7 +108,7 @@ class BinarySearchTree {
             
 
             // When both children are present
-            Node parent = root;
+            Node parent;
             {
                 Node current = root.right;
                 while (current != null && current.left != null) 
@@ -113,43 +143,3 @@ class Node {
     }
 }
 
-
-public class Assignment6 {
-        static Node search(Node root, int key)
-    {
-        // Base Cases: root is null or key is present at
-        // root
-        if (root == null || root.key == key)
-            return root;
-
-        // Key is greater than root's key
-        if (root.key < key)
-            return search(root.right, key);
-
-        // Key is smaller than root's key
-        return search(root.left, key);
-    }
-    public static void main(String[] args) {
-        BinarySearchTree tree = new BinarySearchTree();
-
-
-        // Creating the following BST
-        //      50
-        //     /  \
-        //    30   70
-        //   / \   / \
-        //  20 40 60 80
-
-        tree.insert(50);
-        tree.insert(30);
-        tree.insert(20);
-        tree.insert(40);
-        tree.insert(70);
-        tree.insert(60);
-        tree.insert(80);
-
-        // Print inorder traversal of the BST
-        tree.inorder();
-        
-    }
-}
