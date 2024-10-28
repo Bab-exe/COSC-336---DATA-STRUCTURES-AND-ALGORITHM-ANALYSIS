@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Binary Tree Properties and Optimal Encoding}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+If a binary tree is not full, for example, if there is a node \( u \) with only one child \( v \):
+
+\section*{Case 1}
+If \( u \) is the root, delete \( u \) and make \( v \) the new root.
+
+\section*{Case 2}
+If \( u \) is not the root:
+\begin{itemize}
+    \item Let \( w \) be the parent of \( u \).
+    \item Delete \( u \) and replace it with \( v \) as a child of \( w \).
+\end{itemize}
+
+In both cases, the resulting structure will maintain the properties of a binary tree, and the prefix code will remain valid. However, the depth of the tree may change, and any bits required to encode \( v \) may decrease, indicating that the original code may not have been optimal.
+
+If deleting a node and restructuring the tree results in a more efficient encoding, it suggests that the original tree structure was not the most compact representation possible. An optimal prefix code (such as a Huffman code) would have already positioned more frequently used symbols closer to the root, thereby minimizing the overall encoding length.
+
+\section*{Fibonacci Relationship}
+\[
+F_{i+1} + F_i + F_{i-1} = F_i + F_{i+2} - 1
+\]
+
+\section*{Frequencies}
+\begin{itemize}
+    \item \( a: 1 \)
+    \item \( b: 1 \)
+    \item \( c: 2 \)
+    \item \( d: 3 \)
+    \item \( e: 5 \)
+    \item \( f: 8 \)
+    \item \( g: 13 \)
+    \item \( h: 21 \)
+\end{itemize}\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Binary Tree Properties and Optimal Encoding}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+If a binary tree is not full, for example, if there is a node \( u \) with only one child \( v \):
+
+\section*{Case 1}
+If \( u \) is the root, delete \( u \) and make \( v \) the new root.
+
+\section*{Case 2}
+If \( u \) is not the root:
+\begin{itemize}
+    \item Let \( w \) be the parent of \( u \).
+    \item Delete \( u \) and replace it with \( v \) as a child of \( w \).
+\end{itemize}
+
+In both cases, the resulting structure will maintain the properties of a binary tree, and the prefix code will remain valid. However, the depth of the tree may change, and any bits required to encode \( v \) may decrease, indicating that the original code may not have been optimal.
+
+If deleting a node and restructuring the tree results in a more efficient encoding, it suggests that the original tree structure was not the most compact representation possible. An optimal prefix code (such as a Huffman code) would have already positioned more frequently used symbols closer to the root, thereby minimizing the overall encoding length.
+
+\section*{Fibonacci Relationship}
+To find the Fibonacci relationship, we start with the identity:
+\[
+F_{i+1} + F_i = F_{i+2}
+\]
+If we also consider \( F_{i-1} \), we can rewrite it as:
+\[
+F_{i+1} + F_i + F_{i-1} = F_i + F_{i+1}
+\]
+This leads to:
+\[
+F_{i+1} + F_i + F_{i-1} = F_i + F_{i+2} - 1
+\]
+
+\section*{ }
+In simple terms, this relationship shows how the Fibonacci numbers are connected. It highlights that if you add together certain Fibonacci numbers, you can find others. The pattern in these numbers can help us understand how to organize information more efficiently.
+
+\section*{Frequencies}
+\begin{itemize}
+    \item \( a: 1 \)
+    \item \( b: 1 \)
+    \item \( c: 2 \)
+    \item \( d: 3 \)
+    \item \( e: 5 \)
+    \item \( f: 8 \)
+    \item \( g: 13 \)
+    \item \( h: 21 \)
+\end{itemize}
+
+\section*{Optimal Huffman Codes}
+\begin{itemize}
+    \item \( h: 0 \)
+    \item \( g: 10 \)
+    \item \( f: 110 \)
+    \item \( e: 1110 \)
+    \item \( d: 11110 \)
+    \item \( c: 111110 \)
+    \item \( b: 1111110 \)
+    \item \( a: 1111111 \)
+\end{itemize}
+
+\section*{Generalization}
+When we use the first \( n \) Fibonacci numbers as the frequencies for symbols, the process for creating Huffman codes works the same way. This means that more frequent Fibonacci numbers will end up with shorter codes, leading to a more efficient way of encoding the information.
+
+\end{document}
+
+
+\section*{Optimal Huffman Codes}
+\begin{itemize}
+    \item \( h: 0 \)
+    \item \( g: 10 \)
+    \item \( f: 110 \)
+    \item \( e: 1110 \)
+    \item \( d: 11110 \)
+    \item \( c: 111110 \)
+    \item \( b: 1111110 \)
+    \item \( a: 1111111 \)
+\end{itemize}
+
+\section*{Generalization}
+When using the first \( n \) Fibonacci numbers as frequencies, the Huffman coding procedure remains the same. The resultant codes will generally be shorter for more frequent Fibonacci numbers, resulting in an efficient encoding scheme.
+
+\end{document}
