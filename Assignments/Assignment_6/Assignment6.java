@@ -6,7 +6,7 @@
 
 public class Assignment6 {
     public static void main(String[] args) {
-        BinarySearchTree tree = new BinarySearchTree();
+        BinarySearchTree node = new BinarySearchTree();
 
 
         // Creating the following BST
@@ -16,20 +16,20 @@ public class Assignment6 {
         //   / \   / \
         //  20 40 60 80
 
-        tree.insert(50);
-        tree.insert(30);
-        tree.insert(30);
-        tree.insert(20);
-        tree.insert(40);
-        tree.insert(70);
-        tree.insert(60);
-        tree.insert(80);
+        node.insert(50);
+        node.insert(30);
+        node.insert(30);
+        node.insert(20);
+        node.insert(40);
+        node.insert(70);
+        node.insert(60);
+        node.insert(80);
         
 
 
         
         // Print inorder traversal of the BST
-        tree.inorder();
+        node.inorder();
         
     }
 }
