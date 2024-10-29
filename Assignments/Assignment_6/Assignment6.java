@@ -109,7 +109,7 @@ static Node delete(Node root, int x) {
         Node parent;
         {
             Node current = root.right;
-            while (current != null && current.left != null) 
+            while (current.left != null) 
                 current = current.left;
             
             parent = current;
@@ -128,6 +128,10 @@ static Node delete(Node root, int x) {
 
     
 class Node {
+    /**  keeps the number of nodes
+ in the tree rooted at that node (including in the count the node itself). The constructors
+ and the insertion function need to take into account the sizes of the nodes. */
+    int size;
     int key;
     Node left, right;
 
