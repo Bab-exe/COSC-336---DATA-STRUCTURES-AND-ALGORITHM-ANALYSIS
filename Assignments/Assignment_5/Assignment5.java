@@ -77,11 +77,7 @@ public class Assignment5 {
             
             System.err.println();
         }
-            
-        
-      
-        
-        
+ 
         return s[i_maxSum]; 
     }
 }
