@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Assignment5 {
-
     public static void main(String[] args) {
         System.out.println("Max Increasing Subsequences:");
             System.out.println("[1,14,5,6,2,3]: " + sumIncreasingSubsequence(new int[]{1,14,5,6,2,3}));
@@ -45,7 +44,7 @@ public class Assignment5 {
     static public int sumIncreasingSubsequence(int[] A){
         if (A == null || A.length == 0) return 0;
 
-        int N = A.length;
+        final int N = A.length;
         int[] s = new int[N]; // max sum of an increasing subsequence with last element
         int[] p = new int[N]; // array of indexes of the elements preceding a[i]; 
         int i_maxSum = 0; // index of the max sum
