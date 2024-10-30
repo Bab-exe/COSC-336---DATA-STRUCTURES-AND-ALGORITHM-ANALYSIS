@@ -1,72 +1,94 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
 public class Assignment6Tests extends Assignment6{
-    @Test
-    /** Tests the functionality of the Binary Search Tree */
-    public void BST_Functionality() {
-        BinarySearchTree tree = new BinarySearchTree();
 
-        // Creating the following BST
+    /**  Creates
         //      50
         //     /  \
         //    30   70
         //   / \   / \
-        //  20 35 60 80
-        // /     \     \ 
-     //   5      40    105
+        //  20 40 60 80
+    */
+    public Node createTree(){
+        Node root = new Node(50);
+        insert(root, 30);
+        insert(root, 70);
+        insert(root, 20);
+        insert(root, 40);
+        insert(root, 60);
+        insert(root, 80);
+        return root;
+    }
 
-     //ends in 5 = delete
-        tree.insert(50);
-        tree.insert(30);
-        tree.insert(30);
-            tree.insert(35);
-        tree.insert(20);
-        tree.insert(40);
+    @Test 
+    public void test_Insert(){
+        Node root = new Node(0);
 
-        tree.insert(70);
-        tree.insert(60);
-        tree.insert(80);
-        
-            tree.insert(5);
-            tree.insert(30); // duplicate
-            tree.insert(105);
+        final int KEY = 10;
+    
+        assertNull(search(root, KEY));
 
-        System.err.print("In Order Traversal: ");
-        tree.inorder();
+        insert(root, KEY);
+        assertNotNull(search(root, KEY));
 
+    }
+    @Test
+    public void test_Search(){
+        Node root = createTree();
+        assertNotNull(search(root, 50));
+        assertNotNull(search(root, 30));
+        assertNotNull(search(root, 70));
+        assertNotNull(search(root, 20));
+        assertNotNull(search(root, 40));
+        assertNotNull(search(root, 60));
+        assertNotNull(search(root, 80));
+        assertNull(search(root, 19));
+    }
+
+    @Test
+    public void test_Delete(){
+        Node root = createTree();
+
+        root = delete(root, 50);
+        assertNull(search(root, 50));
+
+        root = delete(root, 30);
+        assertNull(search(root, 30));
+
+        root = delete(root, 70);
+        assertNull(search(root, 70));
+
+        root = delete(root, 20);
+        assertNull(search(root, 20));
+    }
+
+
+    @Test 
+    public void test_leftRotate(){
+        Node root = createTree();
+        root = leftRotate(root);
        
-        
-        // Test search functionality
-        
-        assertNotNull(tree.search(50)); // 50 should be in tree
-        assertNotNull(tree.search(30)); // 30 should be in tree
-        assertNotNull(tree.search(20)); // 20 should be in tree
-        assertNotNull(tree.search(40)); // 40 should be in tree
-        assertNotNull(tree.search(70)); // 70 should be in tree
-        assertNotNull(tree.search(60)); // 60 should be in tree
-        assertNotNull(tree.search(80)); // 80 should be in tree
-        
-        assertNull(tree.search(Integer.MIN_VALUE)); //not in tree 
-        
-        assert(tree.getRoot() == 50); // root should be 50
+        assertEquals(70, root.key);
 
-        // Test delete functionality
+            assertEquals(50, root.left.key);
+                assertEquals(30, root.left.left.key);
+                    assertEquals(20,root.left.left.left.key);
+                    assertEquals(40,root.left.left.right.key);
 
-        tree.delete(105);
-        assertNull(tree.search(100)); // 100 should be deleted
-
-        tree.delete(5);
-        assertNull(tree.search(5)); // 5 should be deleted
-        
+                
+                assertEquals(60,root.left.right.key);
+                
+            assertEquals(80, root.right.key);
+            assertNull(root.right.right);
 
         
         
-    }    
-
-
+    }
+   
 }
 
 

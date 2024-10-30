@@ -12,8 +12,7 @@ public class Assignment6 {
         //   / \   / \
         //  20 40 60 80
 
-        insert(root,50);
-        insert(root,30);
+        
         insert(root,30);
         insert(root,20);
         insert(root,40);
@@ -23,14 +22,12 @@ public class Assignment6 {
 
         // Print inorder traversal of the BST
         inorder(root);
+        System.out.println(
+            root.key + " is the root of the tree\n" +
+            root.size + " is the size of the tree\n"
+        );
         
-        // Searching for keys in the BST
-        System.out.println(search(root, 19) != null
-                               ? "Found"
-                               : "Not Found");
-        System.out.println(search(root, 80) != null
-                               ? "Found"
-                               : "Not Found");
+       
     }
     
     /** function to search a key in a BST. */
@@ -50,20 +47,33 @@ public class Assignment6 {
     }
 
    
-    /** rotates the root t to the left, so that the right child of t (if there is one; otherwise the rotation does not do anything) becomes the parent of t, and symmetrically rightRotate  (Node t) */
-    static Node leftRotate(Node root,final Node t) {
-        Node r = t.right;
-        t.right = r.left;
-        r.left = t;
-        return r;
+    /** rotates the root t to the left, so that the right child of t (if there is one; otherwise the rotation does not do anything) becomes the parent of t, and symmetrically rightRotate  (Node t) 
+     * @param t the node that gets rotated left
+    */
+    static Node leftRotate(Node t) {
+        if (t == null || t.right == null) return t; // no right child to rotate
+
+        final Node L_rotate = t.right;
+
+        t.right = L_rotate.left;
+        L_rotate.left = t;
+
+        return L_rotate;
     }
 
-    static Node insert(Node root, int key) {        
-        if (root == null) root = new Node(key); //basecase
+    static Node insert(Node root, final int KEY) {        
+        if (root == null) return new Node(KEY);
         
-        if (key < root.key) root.left = insert(root.left, key);
-        if (key > root.key) root.right = insert(root.right, key);
-        return root;   
+        
+        root.size+=1;
+        if (KEY < root.key) root.left = insert(root.left, KEY); 
+        else if (KEY >= root.key) root.right = insert(root.right, KEY);
+       
+
+        
+
+        return root;
+        
     }
 
     /** function to search a key in a BST
@@ -124,10 +134,10 @@ class Node {
     /**  keeps the number of nodes
  in the tree rooted at that node (including in the count the node itself). The constructors
  and the insertion function need to take into account the sizes of the nodes. */
-    int size;
+    public int size;
 
-    int key;
-    Node left, right;
+    public int key;
+    public Node left, right;
 
     public Node(int item)
     {
@@ -136,5 +146,7 @@ class Node {
         
         size = 1;
     }
+
+   
 }
 
