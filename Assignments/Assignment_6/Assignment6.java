@@ -104,8 +104,8 @@ public class Assignment6 {
     static Node insert(Node root, final int KEY) {        
         if (root == null) return new Node(KEY);
          
-        if (KEY < root.key) root.left = insert(root.left, KEY); 
-        else if (KEY >= root.key) root.right = insert(root.right, KEY);
+        if (KEY <= root.key) root.left = insert(root.left, KEY); 
+        else if (KEY > root.key) root.right = insert(root.right, KEY);
        
         root.size++;
 
