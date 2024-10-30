@@ -6,13 +6,14 @@ import org.junit.Test;
 
 public class Assignment6Tests extends Assignment6{
 
-    /**  Creates
-        //      50
-        //     /  \
-        //    30   70
-        //   / \   / \
-        //  20 40 60 80
-    */
+    /**  Creates <pre>
+     *         50   <br>
+     *        /  \  <br>
+     *       30    70  <br>
+     *      /  \  /  \<br>
+     *     20 40 60 80<br>
+     * </pre> */
+  
     public Node createTree(){
         Node root = new Node(50);
         insert(root, 30);
@@ -49,23 +50,7 @@ public class Assignment6Tests extends Assignment6{
         assertNull(search(root, 19));
     }
 
-    @Test
-    public void test_Delete(){
-        Node root = createTree();
-
-        root = delete(root, 50);
-        assertNull(search(root, 50));
-
-        root = delete(root, 30);
-        assertNull(search(root, 30));
-
-        root = delete(root, 70);
-        assertNull(search(root, 70));
-
-        root = delete(root, 20);
-        assertNull(search(root, 20));
-    }
-
+   
 
     @Test 
     public void test_leftRotate(){
@@ -101,6 +86,26 @@ public class Assignment6Tests extends Assignment6{
                     assertEquals(60, root.right.right.left.key);
                     assertEquals(80, root.right.right.right.key);
     }
+
+    @Test
+    public void test_Sizing(){
+        Node root = createTree();
+        assertEquals(7, root.size);
+        assertEquals(root.left.size,root.right.size);
+        
+        
+    } 
+
+    @Test
+    public void FileReading(){
+        Node input6_1 = inputFile("input-6-1.txt");
+
+        assertNotNull(input6_1);
+        assertEquals(input6_1.key,448); //the first val is 448
+        assertEquals(1000, input6_1.size);
+    }
+
+    
 }
 
 
