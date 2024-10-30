@@ -67,3 +67,5 @@ For the array with elements: 3 1 2 4 5 8 7 6 9
 The elements that could have been the pivot element after the Quicksort are 4,5, and 9, since they each have smaller elements to the left of them in the array and larger elements to the right of them in the array.
 
 Exercise 3.
+
+Answer: 1-2α. When the partition function produces a split where each subproblem yields α*n elements, the pivot must fall between the indices α*n, (1-α)*n. The length of this range would be (1-α)*n - α*n = 1-2α * n. Dividing the total range, n, from this valid range would yield 1-2α.
