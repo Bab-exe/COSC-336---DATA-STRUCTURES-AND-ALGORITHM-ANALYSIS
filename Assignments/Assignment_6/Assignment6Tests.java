@@ -1,10 +1,15 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-
 import org.junit.Test;
 
 public class Assignment6Tests extends Assignment6{
+
+    /**   7, 10, 3, 9, 13, 11.*/
+    final int[] data1 = { 7, 10, 3, 9, 13, 11};
+
+    /**   7, 3, 10, 9, 13, 11.*/
+    final int[] figure1 = {7,3,10,9,13,11};
 
     /**  Creates <pre>
      *         50   <br>
@@ -13,7 +18,6 @@ public class Assignment6Tests extends Assignment6{
      *      /  \  /  \<br>
      *     20 40 60 80<br>
      * </pre> */
-  
     public Node createTree(){
         Node root = new Node(50);
         insert(root, 30);
@@ -25,16 +29,31 @@ public class Assignment6Tests extends Assignment6{
         return root;
     }
 
+    public Node createTree(int... key){
+        Node root = new Node(key[0]);
+
+        for(int i = 1; i < key.length; i++)
+            insert(root, key[i]);
+        
+        return root;
+    }
+
     @Test 
     public void test_Insert(){
-        Node root = new Node(0);
+        Node root = new Node(10);
 
-        final int KEY = 10;
-    
-        assertNull(search(root, KEY));
+        final int KEY = root.key + 10; //right
+        final int KEY2 = root.key - 10; //left
+
+
+        assertNull(root.left);
+        assertNull(root.right);
 
         insert(root, KEY);
-        assertNotNull(search(root, KEY));
+        insert(root, KEY2);
+        
+        assertEquals(KEY2, root.left.key);
+        assertEquals(KEY, root.right.key);
 
     }
     @Test
@@ -49,8 +68,6 @@ public class Assignment6Tests extends Assignment6{
         assertNotNull(search(root, 80));
         assertNull(search(root, 19));
     }
-
-   
 
     @Test 
     public void test_leftRotate(){
@@ -89,22 +106,80 @@ public class Assignment6Tests extends Assignment6{
 
     @Test
     public void test_Sizing(){
+
         Node root = createTree();
         assertEquals(7, root.size);
         assertEquals(root.left.size,root.right.size);
+
+
+        root = leftRotate(root);
+        assertEquals(7, root.size); 
+            assertEquals(1,root.right.size);
+            assertEquals(5,root.left.size);
+                assertEquals(3,root.left.left.size);
+                assertEquals(1,root.left.right.size);
+                    assertEquals(1,root.left.left.left.size);
+                    assertEquals(1,root.left.left.right.size);
+
+        root = createTree();
+
+
+        root = rightRotate(root);
+        assertEquals(7, root.size);
+            assertEquals(1,root.left.size);
+            assertEquals(5,root.right.size);
+                assertEquals(1,root.right.left.size);
+                assertEquals(3,root.right.right.size);
+                    assertEquals(1,root.right.right.left.size);
+                    assertEquals(1,root.right.right.right.size);
+
         
-        
-    } 
+    
+    }
+
+    @Test 
+    public void test_Sizing2(){
+        Node root = createTree(7,3,10,9,13,11);
+        assertEquals(6, root.size);
+            assertEquals(1, root.left.size);
+            assertEquals(4, root.right.size);
+                assertEquals(1, root.right.left.size);
+                assertEquals(2, root.right.right.size);
+                    assertEquals(1, root.right.right.left.size);
+            
+        root = leftRotate(root);
+        assertEquals(6, root.size);
+            assertEquals(2,root.right.size);
+            assertEquals(3,root.left.size);
+                assertEquals(1,root.left.left.size);
+                assertEquals(1,root.left.right.size);
+                    assertEquals(1,root.left.right.left.size);
+    }
+    
+    
 
     @Test
     public void FileReading(){
         Node input6_1 = inputFile("input-6-1.txt");
 
-        assertNotNull(input6_1);
-        assertEquals(input6_1.key,448); //the first val is 448
-        assertEquals(1000, input6_1.size);
+            assertNotNull(input6_1);
+            assertEquals(448,input6_1.key); //the first root is 448
+            assertEquals(1000, input6_1.size);
+
+        Node input6_2 = inputFile("input-6-2.txt");
+            assertNotNull(input6_2);
+            assertEquals(745,input6_2.key); //the first root is 10000
+            assertEquals(10000, input6_2.size);
     }
 
+    @Test
+    public void PreOrder(){
+        Node root = createTree(data1);
+
+        /**  Your program will print: (7,6), (3,1), (10,4),
+ (9,1), (13, 2), (11,1) */
+        preorder(root);
+    }
     
 }
 

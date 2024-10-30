@@ -7,8 +7,7 @@ public class Assignment6 {
     public static void main(String[] args) {
         Node root = inputFile("input-6-1.txt");
 
-        System.out.println("Inorder traversal of the given tree");
-        inorder(root);
+        
        
         
     }
@@ -22,7 +21,7 @@ public class Assignment6 {
             Node root = new Node(console.nextInt());
 
             //reads ints in the file
-            for (int i = 0; i < N-1; i++) 
+            for (int i = 0; i < N; i++) 
                 insert(root,console.nextInt());
             
             return root;
@@ -32,20 +31,23 @@ public class Assignment6 {
 
         return null;
     } 
-    /** function to search a key in a BST. */
-    static Node search(Node root, int key)
+    /** function to search a key in a BST.
+     * @param root
+     * @param KEY
+     * @return the {@code node} with key or {@code null} if doesnt exist
+     */
+    static Node search(Node root, final int KEY)
     {
-        // Base Cases: root is null or key is present at
-        // root
-        if (root == null || root.key == key)
+        // Base Cases: root is null or key is already the root
+        if (root == null || root.key == KEY)
             return root;
 
         // Key is greater than root's key
-        if (root.key < key)
-            return search(root.right, key);
+        if (KEY > root.key)
+            return search(root.right, KEY);
 
         // Key is smaller than root's key
-        return search(root.left, key);
+        return search(root.left, KEY);
     }
 
    
@@ -56,23 +58,28 @@ public class Assignment6 {
         if (t == null || t.right == null) return t; // no right child to rotate
         //TODO: SIZE calc for left 
         final Node L_rotate = t.right;
-
-        t.right = L_rotate.left;
+            L_rotate.size = t.size; // size of left rotate = old root;
         
+        t.right = L_rotate.left;
+            t.size -= t.right.size + 1; // size of old root - size of new right child - 1 (for the old root itself)
 
         L_rotate.left = t;
-       
+        
         return L_rotate;
     }
 
-    /** opposite of leftRotate */
+    /** opposite of leftRotate
+     * @param t the node that gets rotated right
+    */
     static Node rightRotate(final Node t){
         if (t == null || t.left == null) return t; // no left child to rotate
 
         //TODO: SIZE calc for right
         final Node R_rotate = t.left;
+            R_rotate.size = t.size; // size of right rotate = old root;
 
         t.left = R_rotate.right;
+            t.size -= t.left.size + 1; 
         
 
         R_rotate.right = t;
@@ -80,19 +87,20 @@ public class Assignment6 {
         return R_rotate;
     }
 
+    /** function to insert a key in a BST
+     * @param root
+     * @param KEY
+     * @return root node with inserted KEY
+    */
     static Node insert(Node root, final int KEY) {        
         if (root == null) return new Node(KEY);
-        
-        
-        root.size++;
+         
         if (KEY < root.key) root.left = insert(root.left, KEY); 
         else if (KEY >= root.key) root.right = insert(root.right, KEY);
        
-
-        
+        root.size+= 1;
 
         return root;
-        
     }
 
     /** function to search a key in a BST
@@ -107,16 +115,25 @@ public class Assignment6 {
         inorder(root.right);
     }
 
+    static void preorder(Node root){
+        if (root == null) return; 
 
-
-    
+        System.out.printf(
+            "(%d,%d)%c ",
+            root.key, root.size,
+            (root.left != null || root.right != null) ? ',' : '.'
+        );
+        
+        preorder(root.left);
+        preorder(root.right);
+    }
 }
     
     class Node {
         /**  keeps the number of nodes
      in the tree rooted at that node (including in the count the node itself). The constructors
     and the insertion function need to take into account the sizes of the nodes. */
-        public int size;
+        public int size = 0;
 
         final public int key;
 
@@ -129,6 +146,8 @@ public class Assignment6 {
             
             size = 1;
         }
+
+
 
     
     }
