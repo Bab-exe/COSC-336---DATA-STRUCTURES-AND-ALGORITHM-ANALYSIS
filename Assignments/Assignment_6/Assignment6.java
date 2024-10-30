@@ -47,18 +47,33 @@ public class Assignment6 {
     }
 
    
-    /** rotates the root t to the left, so that the right child of t (if there is one; otherwise the rotation does not do anything) becomes the parent of t, and symmetrically rightRotate  (Node t) 
+    /** rotates the root t to the left, so that the right child of {@code t} becomes the parent of t, and symmetrically rightRotate  (Node t) 
      * @param t the node that gets rotated left
     */
-    static Node leftRotate(Node t) {
+    static Node leftRotate(final Node t) {
         if (t == null || t.right == null) return t; // no right child to rotate
 
         final Node L_rotate = t.right;
 
         t.right = L_rotate.left;
+        t.right.size -= 1; // decrease size of right child TODO: left rotate sizes
+
         L_rotate.left = t;
 
         return L_rotate;
+    }
+
+    /** opposite of leftRotate */
+    static Node rightRotate(final Node t){
+        if (t == null || t.left == null) return t; // no left child to rotate
+
+        final Node R_rotate = t.left;
+
+        t.left = R_rotate.right;
+        t.left.size -= 1; // decrease size of left child TODO: right rotate sizes
+        R_rotate.right = t;
+
+        return R_rotate;
     }
 
     static Node insert(Node root, final int KEY) {        

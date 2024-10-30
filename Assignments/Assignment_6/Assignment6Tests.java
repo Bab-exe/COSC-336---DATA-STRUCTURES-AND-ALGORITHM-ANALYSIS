@@ -89,6 +89,18 @@ public class Assignment6Tests extends Assignment6{
         
     }
    
+    @Test
+    public void test_rightRotate(){
+        Node root = createTree();
+        root = rightRotate(root);
+        assertEquals(30, root.key);
+            assertEquals(20, root.left.key);
+            assertEquals(50, root.right.key);
+                assertEquals(40, root.right.left.key);
+                assertEquals(70, root.right.right.key);
+                    assertEquals(60, root.right.right.left.key);
+                    assertEquals(80, root.right.right.right.key);
+    }
 }
 
 
