@@ -68,8 +68,9 @@ public class Assignment6 {
             L_rotate.size = t.size; // size of left rotate = old root;
         
         t.right = L_rotate.left;
-            t.size -= t.right.size + 1; // size of old root - size of new right child - 1 (for the old root itself)
-
+            t.size = 1;
+            if (t.right != null) t.size += t.right.size; // add size of right child
+            if (t.left != null) t.size += t.left.size; // add size of left child
         L_rotate.left = t;
         
         return L_rotate;
@@ -86,7 +87,9 @@ public class Assignment6 {
             R_rotate.size = t.size; // size of right rotate = old root;
 
         t.left = R_rotate.right;
-            t.size -= t.left.size + 1; 
+            t.size = 1;
+            if (t.right != null) t.size += t.right.size; // add size of right child
+            if (t.left != null) t.size += t.left.size; // add size of left child
         
 
         R_rotate.right = t;

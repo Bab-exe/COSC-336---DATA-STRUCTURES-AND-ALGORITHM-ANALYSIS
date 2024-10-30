@@ -153,7 +153,7 @@ public class Assignment6Tests extends Assignment6{
             assertEquals(3,root.left.size);
                 assertEquals(1,root.left.left.size);
                 assertEquals(1,root.left.right.size);
-                    assertEquals(1,root.left.right.left.size);
+                   
     }
     
     
@@ -178,7 +178,12 @@ public class Assignment6Tests extends Assignment6{
 
         /**  Your program will print: (7,6), (3,1), (10,4),
  (9,1), (13, 2), (11,1) */
+        System.err.println("Should print: (7,6), (3,1), (10,4), (9,1), (13, 2), (11,1) ");
         preorder(root);
+
+        System.err.println("Should print:  (10,6), (7,3), (3,1), (9,1) (13,2), (11, 1)");
+        preorder(leftRotate(root));
+
     }
     
 }
