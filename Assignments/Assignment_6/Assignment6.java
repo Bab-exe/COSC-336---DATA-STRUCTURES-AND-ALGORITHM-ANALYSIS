@@ -8,15 +8,14 @@ public class Assignment6 {
         Node input6_1 = inputFile("input-6-1.txt");
         Node input6_2 = inputFile("input-6-2.txt");
 
+        //first 25 of 6-1: (448,1000) (184,447) (43,187) (10,41) (4,8) (0,3) (3,2) (1,1) (9,4) (5,3) (4,1) (8,1) (32,32) (23,22) (11,11) (13,10) (12,2) (12,1) (16,7) (14,2) (15,1) (21,4) (18,2) (20,1) (22,1) 
         System.out.println("Preorder traversal of input6_1:");
         preorder(input6_1);
 
-        
-        System.out.println("\n\nPreorder traversal of input6_2:");
-        preorder(input6_2);
-        
-       
-        
+
+        //first 25 of 6-2: (745,10000) (151,767) (8,140) (3,6) (2,1) (6,4) (4,3) (3,1) (4,1) (105,133) (63,84) (9,47) (54,46) (21,36) (20,9) (18,8) (16,5) (14,3) (11,2) (12,1) (16,1) (18,2) (18,1) (46,26) (38,16)
+        System.out.println("\n\nPreorder traversal of input6_2:"); 
+        preorder(input6_2);   
     }
     
     /** reads the file and converts it to an Node with children/binarytree */
@@ -63,7 +62,7 @@ public class Assignment6 {
     */
     static Node leftRotate(final Node t) {
         if (t == null || t.right == null) return t; // no right child to rotate
-        //TODO: SIZE calc for left 
+        
         final Node L_rotate = t.right;
             L_rotate.size = t.size; // size of left rotate = old root;
         
@@ -71,6 +70,7 @@ public class Assignment6 {
             t.size = 1;
             if (t.right != null) t.size += t.right.size; // add size of right child
             if (t.left != null) t.size += t.left.size; // add size of left child
+
         L_rotate.left = t;
         
         return L_rotate;
@@ -82,7 +82,7 @@ public class Assignment6 {
     static Node rightRotate(final Node t){
         if (t == null || t.left == null) return t; // no left child to rotate
 
-        //TODO: SIZE calc for right
+        
         final Node R_rotate = t.left;
             R_rotate.size = t.size; // size of right rotate = old root;
 
@@ -91,7 +91,6 @@ public class Assignment6 {
             if (t.right != null) t.size += t.right.size; // add size of right child
             if (t.left != null) t.size += t.left.size; // add size of left child
         
-
         R_rotate.right = t;
        
         return R_rotate;

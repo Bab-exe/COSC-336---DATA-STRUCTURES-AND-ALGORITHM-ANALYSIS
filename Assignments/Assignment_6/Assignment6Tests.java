@@ -156,8 +156,6 @@ public class Assignment6Tests extends Assignment6{
                    
     }
     
-    
-
     @Test
     public void FileReading(){
         Node input6_1 = inputFile("input-6-1.txt");
@@ -176,16 +174,12 @@ public class Assignment6Tests extends Assignment6{
     public void PreOrder(){
         Node root = createTree(data1);
 
-        /**  Your program will print: (7,6), (3,1), (10,4),
- (9,1), (13, 2), (11,1) */
         System.err.println("Should print: (7,6), (3,1), (10,4), (9,1), (13, 2), (11,1) ");
         preorder(root);
 
-        System.err.println("Should print:  (10,6), (7,3), (3,1), (9,1) (13,2), (11, 1)");
+        System.err.println("\n(LeftRotate) Should print:  (10,6), (7,3), (3,1), (9,1) (13,2), (11, 1)");
         preorder(leftRotate(root));
-
     }
-    
 }
 
 
