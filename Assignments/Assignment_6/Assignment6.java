@@ -1,140 +1,147 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
 /** Since only 2 files are submitted (pdf and .java) all classes are stuffed into this file */
 public class Assignment6 {
     public static void main(String[] args) {
-        Node root = new Node(50);
+        Node input6_1 = inputFile("input-6-1.txt");
+        Node input6_2 = inputFile("input-6-2.txt");
+
+        //first 25 of 6-1: (448,1000) (184,447) (43,187) (10,41) (4,8) (0,3) (3,2) (1,1) (9,4) (5,3) (4,1) (8,1) (32,32) (23,22) (11,11) (13,10) (12,2) (12,1) (16,7) (14,2) (15,1) (21,4) (18,2) (20,1) (22,1) 
+        System.out.println("Preorder traversal of input6_1:");
+        preorder(input6_1);
 
 
-        // Creates tree
-        //      50
-        //     /  \
-        //    30   70
-        //   / \   / \
-        //  20 40 60 80
-
-        insert(root,50);
-        insert(root,30);
-        insert(root,30);
-        insert(root,20);
-        insert(root,40);
-        insert(root,70);
-        insert(root,60);
-        insert(root,80);
-
-        // Print inorder traversal of the BST
-        inorder(root);
-        
-        // Searching for keys in the BST
-        System.out.println(search(root, 19) != null
-                               ? "Found"
-                               : "Not Found");
-        System.out.println(search(root, 80) != null
-                               ? "Found"
-                               : "Not Found");
+        //first 25 of 6-2: (745,10000) (151,767) (8,140) (3,6) (2,1) (6,4) (4,3) (3,1) (4,1) (105,133) (63,84) (9,47) (54,46) (21,36) (20,9) (18,8) (16,5) (14,3) (11,2) (12,1) (16,1) (18,2) (18,1) (46,26) (38,16)
+        System.out.println("\n\nPreorder traversal of input6_2:"); 
+        preorder(input6_2);   
     }
     
-    /** function to search a key in a BST. */
-    static Node search(Node root, int key)
+    /** reads the file and converts it to an Node with children/binarytree */
+    public static Node inputFile(String filename) {
+        try (Scanner console = new Scanner(new FileReader(filename))) {
+            
+            //size is the first number -1 cus first number is the root
+            final int N = console.nextInt()-1;
+            Node root = new Node(console.nextInt());
+
+            //reads ints in the file
+            for (int i = 0; i < N; i++) 
+                insert(root,console.nextInt());
+            
+            return root;
+        }catch(FileNotFoundException e) {
+            System.err.println("File not found: '" + filename + "'");
+        }
+
+        return null;
+    } 
+    /** function to search a key in a BST.
+     * @param root
+     * @param KEY
+     * @return the {@code node} with key or {@code null} if doesnt exist
+     */
+    static Node search(Node root, final int KEY)
     {
-        // Base Cases: root is null or key is present at
-        // root
-        if (root == null || root.key == key)
+        // Base Cases: root is null or key is already the root
+        if (root == null || root.key == KEY)
             return root;
 
         // Key is greater than root's key
-        if (root.key < key)
-            return search(root.right, key);
+        if (KEY > root.key)
+            return search(root.right, KEY);
 
         // Key is smaller than root's key
-        return search(root.left, key);
+        return search(root.left, KEY);
     }
 
    
-    /** rotates the root t to the left, so that the right child of t (if there is one; otherwise the rotation does not do anything) becomes the parent of t, and symmetrically rightRotate  (Node t) */
-    static Node leftRotate(Node root,final Node t) {
-        Node r = t.right;
-        t.right = r.left;
-        r.left = t;
-        return r;
-    }
-
-    static Node insert(Node root, int key) {        
-        if (root == null) root = new Node(key); //basecase
-        
-        if (key < root.key) root.left = insert(root.left, key);
-        if (key > root.key) root.right = insert(root.right, key);
-        return root;   
-    }
-
-    /** function to search a key in a BST
-     * @param root
-     * @param key
+    /** rotates the root t to the left, so that the right child of {@code t} becomes the parent of t, and symmetrically rightRotate  (Node t) 
+     * @param t the node that gets rotated left
     */
-    static void inorder(Node root){
-        if(root == null) return;
+    static Node leftRotate(final Node t) {
+        if (t == null || t.right == null) return t; // no right child to rotate
+        
+        final Node L_rotate = t.right;
+            L_rotate.size = t.size; // size of left rotate = old root;
+        
+        t.right = L_rotate.left;
+            t.size = 1;
+            if (t.right != null) t.size += t.right.size; // add size of right child
+            if (t.left != null) t.size += t.left.size; // add size of left child
 
-        inorder(root.left);
-        System.out.print(root.key + " ");
-        inorder(root.right);
+        L_rotate.left = t;
+        
+        return L_rotate;
     }
 
+    /** opposite of leftRotate
+     * @param t the node that gets rotated right
+    */
+    static Node rightRotate(final Node t){
+        if (t == null || t.left == null) return t; // no left child to rotate
 
+        
+        final Node R_rotate = t.left;
+            R_rotate.size = t.size; // size of right rotate = old root;
 
-    static Node delete(Node root, int x) {
-        // Base case
-        if (root == null) return root;
+        t.left = R_rotate.right;
+            t.size = 1;
+            if (t.right != null) t.size += t.right.size; // add size of right child
+            if (t.left != null) t.size += t.left.size; // add size of left child
+        
+        R_rotate.right = t;
+       
+        return R_rotate;
+    }
 
-        // If key to be searched is in a subtree
-        if (root.key > x) {
-            root.left = delete(root.left, x);
-        } else if (root.key < x) {
-            root.right = delete(root.right, x);
-        } else {
-            // If root matches with the given key
+    /** function to insert a key in a BST
+     * @param root
+     * @param KEY
+     * @return root node with inserted KEY
+    */
+    static Node insert(Node root, final int KEY) {        
+        if (root == null) return new Node(KEY);
+         
+        if (KEY < root.key) root.left = insert(root.left, KEY); 
+        else if (KEY >= root.key) root.right = insert(root.right, KEY);
+       
+        root.size++;
 
-            // Cases when root has 0 children or
-            // only right child
-            if (root.left == null) return root.right;
-            
-
-            // When root has only left child
-            if (root.right == null) return root.left;
-            
-
-            // When both children are present
-            Node parent;
-            {
-                Node current = root.right;
-                while (current.left != null) 
-                    current = current.left;
-                
-                parent = current;
-            }
-            
-
-            root.key = parent.key;
-            root.right = delete(root.right, parent.key);
-        }
         return root;
     }
 
-}
-    
-class Node {
-    /**  keeps the number of nodes
- in the tree rooted at that node (including in the count the node itself). The constructors
- and the insertion function need to take into account the sizes of the nodes. */
-    int size;
+    /** prints preorder (key,size) */
+    static void preorder(Node root){
+        if (root == null) return; 
 
-    int key;
-    Node left, right;
+        System.out.printf(
+            "(%d,%d) ",
+            root.key, root.size
+        );
 
-    public Node(int item)
-    {
-        key = item;
-        left = right = null;
-        
-        size = 1;
+        preorder(root.left);
+        preorder(root.right);
     }
 }
+    
+    class Node {
+        /**  keeps the number of nodes
+     in the tree rooted at that node (including in the count the node itself). The constructors
+    and the insertion function need to take into account the sizes of the nodes. */
+        public int size = 0;
+
+        final public int key;
+
+        public Node left, right;
+
+        public Node(int item)
+        {
+            key = item;
+            left = right = null;
+            
+            size = 1;
+        }
+    }
 
