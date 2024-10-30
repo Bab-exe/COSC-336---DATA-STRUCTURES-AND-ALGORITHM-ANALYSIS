@@ -5,8 +5,15 @@ import java.util.Scanner;
 /** Since only 2 files are submitted (pdf and .java) all classes are stuffed into this file */
 public class Assignment6 {
     public static void main(String[] args) {
-        Node root = inputFile("input-6-1.txt");
+        Node input6_1 = inputFile("input-6-1.txt");
+        Node input6_2 = inputFile("input-6-2.txt");
 
+        System.out.println("Preorder traversal of input6_1:");
+        preorder(input6_1);
+
+        
+        System.out.println("\n\nPreorder traversal of input6_2:");
+        preorder(input6_2);
         
        
         
@@ -98,32 +105,20 @@ public class Assignment6 {
         if (KEY < root.key) root.left = insert(root.left, KEY); 
         else if (KEY >= root.key) root.right = insert(root.right, KEY);
        
-        root.size+= 1;
+        root.size++;
 
         return root;
     }
 
-    /** function to search a key in a BST
-     * @param root
-     * @param key
-    */
-    static void inorder(Node root){
-        if(root == null) return;
-
-        inorder(root.left);
-        System.out.print(root.key + " ");
-        inorder(root.right);
-    }
-
+    /** prints preorder (key,size) */
     static void preorder(Node root){
         if (root == null) return; 
 
         System.out.printf(
-            "(%d,%d)%c ",
-            root.key, root.size,
-            (root.left != null || root.right != null) ? ',' : '.'
+            "(%d,%d) ",
+            root.key, root.size
         );
-        
+
         preorder(root.left);
         preorder(root.right);
     }
@@ -146,9 +141,5 @@ public class Assignment6 {
             
             size = 1;
         }
-
-
-
-    
     }
 
