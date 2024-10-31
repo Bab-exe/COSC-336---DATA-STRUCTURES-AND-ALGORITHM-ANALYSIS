@@ -5,15 +5,24 @@ import java.util.Scanner;
 /** Since only 2 files are submitted (pdf and .java) all classes are stuffed into this file */
 public class Assignment6 {
     public static void main(String[] args) {
+        Node test_data1 = insert(7, 10, 3, 9, 13, 11); //test data 1
         Node input6_1 = inputFile("input-6-1.txt");
         Node input6_2 = inputFile("input-6-2.txt");
 
+        /*Test data 1: insert 7, 10, 3, 9, 13, 11. 
+        Your program will print: (7,6), (3,1), (10,4),(9,1), (13, 2), (11,1). 
+        Next, do a leftRotate, and print the tree after rotation and you get (10,6), (7,3), (3,1), (9,1) (13,2), (11, 1). */
+        System.err.println("Test data 1:");
+        preorder(test_data1);
+            System.err.println("\n\nTest data 1 After leftRotation");
+            preorder(leftRotate(test_data1));
+
         //first 25 of 6-1: (448,1000) (184,447) (43,187) (10,43) (4,8) (0,4) (3,3) (1,1) (4,1) (9,3) (5,2) (8,1) (32,34) (23,23) (11,12) (13,11) (12,2) (12,1) (16,8) (14,2) (15,1) (23,5) (21,4) (18,2) (20,1) 
-        System.out.println("Preorder traversal of input6_1:");
+        System.err.println("\n\nPreorder traversal of input6_1:");
         preorder(input6_1);
 
         //first 25 of 6-2: (745,10000) (151,767) (8,141) (3,6) (2,2) (3,1) (6,3) (4,2) (4,1) (105,134) (63,86) (63,48) (9,47) (54,46) (21,38) (21,10) (20,9) (18,8) (18,7) (16,6) (14,4) (11,2) (12,1) (16,1) (18,1)
-        System.out.println("\n\nPreorder traversal of input6_2:"); 
+        System.err.println("\n\nPreorder traversal of input6_2:"); 
         preorder(input6_2);   
     }
     
@@ -111,6 +120,21 @@ public class Assignment6 {
         return root;
     }
 
+    /** exists for easier testing; inserts KEYS in a tree
+     * @param KEYS
+     * @return new node with a root of the first element of {@code KEYS}
+     * <br> exists for easier testing
+     */
+    static Node insert(final int... KEYS){
+        Node root = new Node(KEYS[0]);
+
+        for (int i = 1; i < KEYS.length; i++)
+            insert(root, KEYS[i]);
+        
+
+        return root;
+    }
+    
     /** prints preorder (key,size) */
     static void preorder(Node root){
         if (root == null) return; 
@@ -123,6 +147,8 @@ public class Assignment6 {
         preorder(root.left);
         preorder(root.right);
     }
+
+    
 }
     
     class Node {
@@ -131,7 +157,7 @@ public class Assignment6 {
     and the insertion function need to take into account the sizes of the nodes. */
         public int size = 0;
 
-        final public int key;
+        public int key;
 
         public Node left, right;
 
@@ -142,5 +168,7 @@ public class Assignment6 {
             
             size = 1;
         }
+
+        
     }
 
