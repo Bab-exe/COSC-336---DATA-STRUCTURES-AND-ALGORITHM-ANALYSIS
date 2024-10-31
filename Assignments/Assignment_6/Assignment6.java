@@ -112,7 +112,7 @@ public class Assignment6 {
     static Node insert(Node root, final int KEY) {        
         if (root == null) return new Node(KEY);
          
-        if (KEY <= root.key) root.left = insert(root.left, KEY); 
+        if (KEY <= root.key) root.left = insert(root.left, KEY); //duplicates go to left
         else if (KEY > root.key) root.right = insert(root.right, KEY);
        
         root.size++;
@@ -120,7 +120,7 @@ public class Assignment6 {
         return root;
     }
 
-    /** exists for easier testing; inserts KEYS in a tree
+    /** exists for easier testing
      * @param KEYS
      * @return new node with a root of the first element of {@code KEYS}
      * <br> exists for easier testing
@@ -130,7 +130,6 @@ public class Assignment6 {
 
         for (int i = 1; i < KEYS.length; i++)
             insert(root, KEYS[i]);
-        
 
         return root;
     }
