@@ -156,7 +156,7 @@ public class Assignment6 {
     and the insertion function need to take into account the sizes of the nodes. */
         public int size = 0;
 
-        public int key;
+        public final int key;
 
         public Node left, right;
 
