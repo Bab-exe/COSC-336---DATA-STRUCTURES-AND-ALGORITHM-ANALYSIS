@@ -30,12 +30,12 @@ public class Assignment6 {
     public static Node inputFile(String filename) {
         try (Scanner console = new Scanner(new FileReader(filename))) {
             
-            //size is the first number -1 cus first number is the root
-            final int N = console.nextInt()-1;
+            
+            final int N = console.nextInt();
             Node root = new Node(console.nextInt());
 
-            //reads ints in the file
-            for (int i = 0; i < N; i++) 
+            //reads ints in the file ; starts at 1 because root is already read
+            for (int i = 1; i < N; i++) 
                 insert(root,console.nextInt());
             
             return root;
