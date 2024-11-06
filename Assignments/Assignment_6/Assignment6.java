@@ -17,13 +17,20 @@ public class Assignment6 {
             System.err.println("\n\nTest data 1 After leftRotation");
             preorder(leftRotate(test_data1));
 
+            
         //first 25 of 6-1: (448,1000) (184,447) (43,187) (10,43) (4,8) (0,4) (3,3) (1,1) (4,1) (9,3) (5,2) (8,1) (32,34) (23,23) (11,12) (13,11) (12,2) (12,1) (16,8) (14,2) (15,1) (23,5) (21,4) (18,2) (20,1) 
         System.err.println("\n\nPreorder traversal of input6_1:");
         preorder(input6_1);
 
+        System.err.println("\n\nLeft Rotation of input6_1:");
+        preorder(leftRotate(input6_1));
+
         //first 25 of 6-2: (745,10000) (151,767) (8,141) (3,6) (2,2) (3,1) (6,3) (4,2) (4,1) (105,134) (63,86) (63,48) (9,47) (54,46) (21,38) (21,10) (20,9) (18,8) (18,7) (16,6) (14,4) (11,2) (12,1) (16,1) (18,1)
         System.err.println("\n\nPreorder traversal of input6_2:"); 
         preorder(input6_2);   
+
+        System.err.println("\n\nLeft Rotation of input6_2:");
+        preorder(leftRotate(input6_2));
     }
     
     /** reads the file and converts it to an Node with children/binarytree */
