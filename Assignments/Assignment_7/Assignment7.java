@@ -41,7 +41,7 @@ class Assignment7{
         return null;
     } 
 
-    /** computes the adjacency list of a directed graph */
+    /** computes the adjacency list of a <b>directed</b> graph */
     public static Adj_List_Graph Compute_AdjacencyList(final Adj_List_Graph G) {
         final int N = G.n;
 
