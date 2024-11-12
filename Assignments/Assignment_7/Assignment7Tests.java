@@ -62,7 +62,7 @@ public class Assignment7Tests extends Assignment7  {
             test7_2.printGraph();
     }
     
-    
+    @Test
     /** the example given in Programming Task */
     public void Test1(){
     

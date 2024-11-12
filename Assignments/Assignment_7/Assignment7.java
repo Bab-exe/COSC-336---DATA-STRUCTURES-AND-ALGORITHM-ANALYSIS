@@ -3,8 +3,25 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 class Assignment7{
+    public static void main(String[] args) {   
 
-    public static void main(String[] args) {    
+        /*the adjacency matrix of the example in Programming Task 
+        Should Display
+        0 1 1 0
+        0 0 1 1
+        0 0 0 1
+        0 0 0 0
+         * 
+        */
+
+        Compute_AdjacencyList(create_Graph(new int[][]{
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1},
+            {0,0,0,0}
+        }));
+
+
         Adj_List_Graph input7_1 = inputFile("input-7-1.txt");
         Adj_List_Graph input7_2 = inputFile("input-7-2.txt");
 
@@ -41,13 +58,15 @@ class Assignment7{
         return null;
     } 
 
-    /** computes the adjacency list of a <b>directed</b> graph */
+    /** computes the adjacency list of a <b>directed</b> graph
+     * @return G2
+     */
     public static Adj_List_Graph Compute_AdjacencyList(final Adj_List_Graph G) {
         final int N = G.n;
 
         final Adj_List_Graph G2 = new Adj_List_Graph(N);
-
-        /* TODO: ask if return is correct */
+//check if there is an edge and check if v is in u adjacency list
+        
         int j,i;
         for (int k = 0 ; k < N*N; k++) {
             i = k / N; //computes row
