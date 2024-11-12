@@ -16,18 +16,19 @@ class Assignment7{
             input7_2.printGraph();
     }
 
-    /** reads the file and converts it to an  adjacency list */
+    /** reads the file and converts it to an {@link Adj_List_Graph} */
     public static Adj_List_Graph inputFile(String filename) {
         try (Scanner console = new Scanner(new FileReader(filename))) {
             //node count
             int N = console.nextInt();
-                   
+            
+            //birth of graph of size N
             final Adj_List_Graph GRAPH = new Adj_List_Graph(N);
 
             //add edges
             for (int u = 0 ; u < N;u++)
                 for (int v = 0; v < N; v++)
-                    GRAPH.adj.get(u).add(console.nextInt());
+                    GRAPH.addEdge(u, console.nextInt()); //(u,v) u is the head , v is a single link
                    
             return GRAPH;
         }catch(FileNotFoundException e) {
@@ -37,8 +38,8 @@ class Assignment7{
         return null;
     } 
 
-
-    public static Adj_List_Graph getAdjacencyList(final Adj_List_Graph GRAPH) {
+    /** computes the adjacency list of a directed graph */
+    public static Adj_List_Graph Compute_AdjacencyList(final Adj_List_Graph GRAPH) {
         /** The n nodes are labeled 0,1,...,n −1. If the i×n+j-th bit in the sequence is
  1, then there is an edge from node i to node j, and if the i × n+j-th bit in the sequence
  is 0, then there is no edge from node i to node j. In other words, if the n2 bits are indexed
@@ -46,10 +47,18 @@ class Assignment7{
  (mod n) and if bit with index k is 1, then there exists an edge (i,j), and if it is 0, then
  there is no edge (i,j). For example, the graph G above has n = 4 and the edges are given
  by the following n2 = 16 bits: 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.  */
-        final int N2 = GRAPH.n * GRAPH.n;
 
+        final int N = GRAPH.n;
 
-        //for (int i = 0; i < )
+        int j = 0 , k = 0;
+        for (int i = 0; i < N*N; i++){
+            /** If the i×n+j-th bit in the sequence is
+ 1, then there is an edge from node i to node j,  */
+            k = i * N + j;
+            
+           
+        }
+        
         return null;
     }
 
