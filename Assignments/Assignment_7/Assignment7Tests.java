@@ -1,47 +1,72 @@
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
-import java.awt.PrintGraphics;
 import java.util.ArrayList;
 import org.junit.Test;
 
 
 public class Assignment7Tests extends Assignment7  {
+    
+    /** 
+     * 0 1 0 <br>
+     * 0 0 1 <br>
+     * 0 0 0  */
+    final Adj_List_Graph input7_1 = create_Graph(new int[][]{
+        {0,1,0},
+        {0,0,1},
+        {0,0,0}
+    });
+
+    /** 
+     * 0 1 0 0 0 <br>
+     * 0 0 1 1 0 <br>
+     * 0 0 0 0 0 <br>
+     * 0 0 0 0 1 <br>
+     * 0 0 0 0 0  */
+    final Adj_List_Graph input7_2 = create_Graph(new int[][]{ 
+        {0,1,0,0,0},
+        {0,0,1,1,0},
+        {0,0,0,0,0},
+        {0,0,0,0,1},
+        {0,0,0,0,0}
+    });
+   
+
     @Test
     public void File_Reading() {
-        Adj_List_Graph input7_1 = inputFile("input-7-1.txt");
-        Adj_List_Graph input7_2 = inputFile("input-7-2.txt");
+        Adj_List_Graph test7_1 = inputFile("input-7-1.txt");
+        Adj_List_Graph test7_2 = inputFile("input-7-2.txt");
        
-        assert input7_1 != null; //file exists
-        assert input7_1.n == 3; //3 nodes
-           
+        assert test7_1 != null; //file exists
+        assert test7_1.n == 3; //3 nodes
         //all sizes should be the same
-        for (ArrayList<Integer> list1 : input7_1.adj) {
+        for (ArrayList<Integer> list1 : test7_1.adj) {
             assert list1 != null;
             assert list1.size() == 3;
-
-
         }
+        assertArrayEquals(input7_1.adj.toArray(),test7_1.adj.toArray());
+        
 
-        assert input7_2 != null;
-        assert input7_2.n == 5;
-        for (ArrayList<Integer> list2 : input7_2.adj) {
+        assert test7_2 != null;
+        assert test7_2.n == 5;
+        for (ArrayList<Integer> list2 : test7_2.adj) {
             assert list2 != null;
             assert list2.size() == 5;
         }
+        assertArrayEquals(input7_1.adj.toArray(),test7_1.adj.toArray());
 
         System.err.println("input-7-1.txt: ");
-            input7_1.printGraph();
+            test7_1.printGraph();
 
         System.err.println("\ninput-7-2.txt: ");
-            input7_2.printGraph();
+            test7_2.printGraph();
     }
     
-    @Test
+    
     /** the example given in Programming Task */
     public void Test1(){
     
-    
+        //original
         int[][] test = {
             {0,1,0,0},
             {0,0,1,0},
@@ -82,19 +107,42 @@ public class Assignment7Tests extends Assignment7  {
         
     }
 
-    /** matrix must be squarable*/
-    public Adj_List_Graph create_Graph(final int[][] MATRIX){
-        Adj_List_Graph GRAPH = new Adj_List_Graph(MATRIX.length);
-
-        final int N = MATRIX.length;
-        
-        for (int u = 0 ; u < N;u++)
-                for (int v = 0; v < N; v++)
-                    GRAPH.addEdge(u, MATRIX[u][v]);
-                   
-        
-        return GRAPH;
-                
-    }
    
+    
+    public void Test_input7_1() {  
+        Adj_List_Graph GRAPH7_1 = Compute_AdjacencyList(input7_1);
+
+        int[][] adj7_1 = {
+            {0,1,0},
+            {0,1,1},
+            {0,0,0}
+        };
+
+        System.err.println("\nComputed Adjacency list of input-7-1.txt: ");
+        GRAPH7_1.printGraph();
+        
+        for (int u = 0; u < GRAPH7_1.n; u++) 
+            for (int v = 0; v < GRAPH7_1.n; v++) 
+                assert GRAPH7_1.adj.get(u).get(v) == adj7_1[u][v];
+        
+    }
+
+    
+    public void Test_input7_2(){
+        Adj_List_Graph GRAPH7_2 = Compute_AdjacencyList(input7_2);
+        int[][] adj7_2 = {
+            {0,1,0,0,0},
+            {0,0,1,1,1},
+            {0,0,0,0,0},
+            {0,0,0,0,1},
+            {0,0,0,0,0}
+        };
+            
+        System.err.println("\nComputed Adjacency list of input-7-2.txt: ");
+            GRAPH7_2.printGraph();
+
+        for (int u = 0; u < GRAPH7_2.n; u++) 
+            for (int v = 0; v < GRAPH7_2.n; v++) 
+                assert GRAPH7_2.adj.get(u).get(v) == adj7_2[u][v];
+    }
 }
