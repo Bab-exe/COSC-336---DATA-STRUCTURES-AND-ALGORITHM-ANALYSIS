@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 class Assignment7{
     public static void main(String[] args) {   
-
         /*the adjacency matrix of the example in Programming Task 
         Should Display
         0 1 1 0
@@ -19,13 +18,12 @@ class Assignment7{
             {0,0,1,0},
             {0,0,0,1},
             {0,0,0,0}
-        }));
-
+        })).printGraph();
 
         Adj_List_Graph input7_1 = inputFile("input-7-1.txt");
         Adj_List_Graph input7_2 = inputFile("input-7-2.txt");
 
-        System.err.print("input-7-1.txt: ");
+        System.err.print("\ninput-7-1.txt: ");
           input7_1.printGraph();
         System.err.print("\n\nComputed Adjacency list of input-7-1.txt: ");
             Compute_AdjacencyList(input7_1).printGraph();
@@ -65,17 +63,16 @@ class Assignment7{
         final int N = G.n;
 
         final Adj_List_Graph G2 = new Adj_List_Graph(N);
-//check if there is an edge and check if v is in u adjacency list
-        
-        int j,i;
-        for (int k = 0 ; k < N*N; k++) {
-            i = k / N; //computes row
-            j = k % N; //computes column
 
-            //there is an edge if the bit equals anything but 0
-            if (G.adj.get(i).get(j) != 0) 
-                G2.addEdge(i, j);
+        for (int u = 0; u < N; u++){
+            for (int v = 0; v < N; v++){
+                if (G.adj.get(u).get(v) == 1)
+                    G2.addEdge(v, u);
+            }
+
+            
         }
+       
         
         return G2;
     }
