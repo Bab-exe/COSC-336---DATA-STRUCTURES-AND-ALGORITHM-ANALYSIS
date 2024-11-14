@@ -77,8 +77,8 @@ class Assignment7{
 
             if (G.adj.get(i).get(j) == 1) {  // If there's an edge at [i][j]  
                 for (int v = 0; v < N; v++) 
-                    if (G.adj.get(j).get(v) == 1)  //if there's an edge at [j][v] then there should be a path at [i][v] 
-                        G2.adj.get(i).set(v,1);  
+                    if (G.adj.get(j).get(v) == 1 && G.adj.get(i).get(v) == 0)  //if there's an edge at [j][v] but not at [i][v] then the path length is atleast 1
+                        G2.adj.get(i).set(v,1);  //replaces [i][v] with 1
             }
         }
        return G2;
