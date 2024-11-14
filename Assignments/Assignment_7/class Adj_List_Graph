@@ -1,0 +1,130 @@
+import java.io.*;
+import java.util.*;
+
+class Adj_List_Graph {
+    private int numVertices;
+    private ArrayList<LinkedList<Integer>> adjLists;
+
+    // Constructor to initialize graph
+    public Adj_List_Graph(int vertices) {
+        numVertices = vertices;
+        adjLists = new ArrayList<>(numVertices);
+        for (int i = 0; i < numVertices; i++) {
+            adjLists.add(new LinkedList<>());
+        }
+    }
+
+    // Add an edge from src to dest
+    public void addEdge(int src, int dest) {
+        adjLists.get(src).add(dest);
+    }
+
+    // Get number of vertices
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    // Get adjacency lists
+    public ArrayList<LinkedList<Integer>> getAdjLists() {
+        return adjLists;
+    }
+
+    // Print the graph
+    public void printGraph() {
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print("Vertex " + i + ":");
+            for (Integer v : adjLists.get(i)) {
+                System.out.print(" -> " + v);
+            }
+            System.out.println();
+        }
+    }
+
+    // Method to compute G^2
+    public void computeG2() {
+        Adj_List_Graph G2 = new Adj_List_Graph(this.getNumVertices());
+        boolean[] visited = new boolean[this.getNumVertices()];
+        boolean[] inStack = new boolean[this.getNumVertices()]; // Track recursion stack
+        Stack<Integer> stack = new Stack<>();
+        
+        // Perform DFS to compute G^2
+        for (int v = 0; v < this.getNumVertices(); v++) {
+            if (!visited[v]) {
+                dfsForG2(v, visited, inStack, G2);
+            }
+        }
+        
+        // Print the resulting G^2
+        G2.printGraph();
+    }
+
+    // DFS function for computing G^2
+    private void dfsForG2(int v, boolean[] visited, boolean[] inStack, Adj_List_Graph G2) {
+        visited[v] = true;
+        inStack[v] = true;  // Mark the node as in the current DFS path
+        
+        // Explore all neighbors of v
+        for (int u : adjLists.get(v)) {
+            // Add edge (v, u) to G^2
+            G2.addEdge(v, u);
+
+            // Add edges from v to all the neighbors of u (i.e., 2-step paths)
+            for (int w : adjLists.get(u)) {
+                if (w != v) {
+                    G2.addEdge(v, w);
+                }
+            }
+
+            // Continue DFS if not yet visited
+            if (!visited[u]) {
+                dfsForG2(u, visited, inStack, G2);
+            }
+        }
+        
+        inStack[v] = false; // Unmark after DFS is done
+    }
+
+    public static void main(String[] args) throws IOException, NumberFormatException {
+        // Input files with graph data
+        String[] inputFiles = {"input-7-1.txt", "input-7-2.txt"};
+        
+        for (String fileName : inputFiles) {
+            System.out.println("Processing file: " + fileName);
+            
+            // No try-catch, exceptions are thrown
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            
+            // Read number of vertices
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            // Read edge bits string
+            String edgeBits = reader.readLine().trim();
+            
+            // Initialize graph with n vertices
+            Adj_List_Graph graph = new Adj_List_Graph(n);
+            
+            // Build the graph using edgeBits
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    // Determine if there's an edge between vertex i and j
+                    if (edgeBits.charAt(i * n + j) == '1') {
+                        graph.addEdge(i, j);
+                    }
+                }
+            }
+            
+            // Print the original graph
+            System.out.println("Original Graph:");
+            graph.printGraph();
+            
+            // Compute and print G^2
+            System.out.println("\nGraph G^2:");
+            graph.computeG2();
+            
+            // Print a newline to separate results for different files
+            System.out.println("\n");
+            
+            reader.close(); // Close the reader
+        }
+    }
+}
