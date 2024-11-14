@@ -108,13 +108,13 @@ public class Assignment7Tests extends Assignment7  {
     }
 
    
-    
+    @Test
     public void Test_input7_1() {  
         Adj_List_Graph GRAPH7_1 = Compute_AdjacencyList(input7_1);
 
         int[][] adj7_1 = {
-            {0,1,0},
             {0,1,1},
+            {0,0,1},
             {0,0,0}
         };
 
@@ -127,11 +127,11 @@ public class Assignment7Tests extends Assignment7  {
         
     }
 
-    
+    @Test
     public void Test_input7_2(){
         Adj_List_Graph GRAPH7_2 = Compute_AdjacencyList(input7_2);
         int[][] adj7_2 = {
-            {0,1,0,0,0},
+            {0,1,1,1,0},
             {0,0,1,1,1},
             {0,0,0,0,0},
             {0,0,0,0,1},
