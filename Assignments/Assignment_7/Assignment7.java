@@ -10,8 +10,8 @@ class Assignment7{
         0 0 1 1
         0 0 0 1
         0 0 0 0
-         * 
-        */
+         */
+       
 
         Compute_AdjacencyList(create_Graph(new int[][]{
             {0,1,0,0},
@@ -19,7 +19,7 @@ class Assignment7{
             {0,0,0,1},
             {0,0,0,0}
         })).printGraph();
-
+ 
         Adj_List_Graph input7_1 = inputFile("input-7-1.txt");
         Adj_List_Graph input7_2 = inputFile("input-7-2.txt");
 
@@ -63,23 +63,30 @@ class Assignment7{
         final int N = G.n;
 
         final Adj_List_Graph G2 = new Adj_List_Graph(N);
-
-        for (int u = 0; u < N; u++){
-            for (int v = 0; v < N; v++){
-                if (G.adj.get(u).get(v) == 1)
-                    G2.addEdge(v, u);
-            }
-
-            
-        }
+    
+        //copying G
+        for (int u = 0; u < N; u++)
+            for (int v : G.adj.get(u))
+                G2.addEdge(u, v);
        
-        
-        return G2;
+        //calculating G2
+        int i,j;
+        for (int k = 0; k < N*N; k++) {
+            i = k / N; //calc row [i][?] 
+            j = k % N; //calc column [?][j] 
+
+            if (G.adj.get(i).get(j) == 1) {  // If there's an edge at [i][j]  
+                for (int v = 0; v < N; v++) 
+                    if (G.adj.get(j).get(v) == 1)  //if there's an edge at [j][v] then there should be a path at [i][v] 
+                        G2.adj.get(i).set(v,1);  
+            }
+        }
+       return G2;
     }
 
     
-    /** exists for manual testing 
-     * TODO Delete when submitting */
+    /** exists for manual testing */
+    
     public static Adj_List_Graph create_Graph(final int[][] MATRIX){
         Adj_List_Graph GRAPH = new Adj_List_Graph(MATRIX.length);
 
@@ -90,8 +97,9 @@ class Assignment7{
                 GRAPH.addEdge(u, MATRIX[u][v]);//(u,v) u is the head , v is a single link
 
         return GRAPH;
-            
     }
+   
+    
     
     //TODO: Copy and Paste Adj_List_Graph class when Submitting
 }
