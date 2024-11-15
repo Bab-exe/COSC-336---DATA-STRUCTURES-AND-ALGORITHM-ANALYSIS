@@ -64,7 +64,7 @@ public class Assignment7Tests extends Assignment7  {
     
     @Test
     /** the example given in Programming Task */
-    public void Test1(){
+    public void Example_1(){
     
         //original
         int[][] test = {

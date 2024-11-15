@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 class Assignment7{
     public static void main(String[] args) {   
+        //using https://www.cs.usfca.edu/~galles/visualization/DFS.html the print_Graph() function prints what they call an adjacency matrix and not the adjacency list
+        // Both adjacency list and adjacency matrix representationsare printed to be safe
+        // in This file the only change made to Adj_List_Graph is to make it a static class
         /*the adjacency matrix of the example in Programming Task 
         Should Display
         0 1 1 0
@@ -11,27 +14,42 @@ class Assignment7{
         0 0 0 1
         0 0 0 0
          */
-       
-
-        Compute_AdjacencyList(create_Graph(new int[][]{
+        //example given in Programming Task
+        Adj_List_Graph Example_1 = create_Graph(new int[][]{
             {0,1,0,0},
             {0,0,1,0},
             {0,0,0,1},
             {0,0,0,0}
-        })).printGraph();
- 
+        });
+
         Adj_List_Graph input7_1 = inputFile("input-7-1.txt");
         Adj_List_Graph input7_2 = inputFile("input-7-2.txt");
 
-        System.err.print("\ninput-7-1.txt: ");
+        System.err.print("\nExample 1: ");
+            Example_1.printGraph();
+            Example_1.printList();
+        System.err.print("\nComputed Adjacency Matrix of Example 1: ");
+            Compute_AdjacencyList(Example_1).printGraph();
+
+        System.err.print("\nComputed Adjacency List of Example 1: ");
+            Compute_AdjacencyList(Example_1).printList();
+
+       
+        System.err.print("\n\ninput-7-1.txt: ");
           input7_1.printGraph();
-        System.err.print("\n\nComputed Adjacency list of input-7-1.txt: ");
+          input7_1.printList();
+        System.err.print("\nComputed Adjacency Matrix of input-7-1.txt: ");
             Compute_AdjacencyList(input7_1).printGraph();
+        System.err.print("\nComputed Adjacency List of input-7-1.txt: ");
+            Compute_AdjacencyList(input7_1).printList();
     
         System.err.print("\n\ninput-7-2.txt: ");
             input7_2.printGraph();
-        System.err.print("\n\nComputed Adjacency list of input-7-2.txt: ");
+            input7_2.printList();
+        System.err.print("\nComputed Adjacency Matrix of input-7-2.txt: ");
             Compute_AdjacencyList(input7_2).printGraph();
+        System.err.print("\nComputed Adjacency List of input-7-2.txt: ");
+            Compute_AdjacencyList(input7_2).printList();
     }
 
     /** reads the file and converts it to an {@link Adj_List_Graph} */
@@ -99,7 +117,7 @@ class Assignment7{
         return GRAPH;
     }
    
-    
+    /** Exists to correctly print the adjacency <b>list</b> of a given graph */
     
     //TODO: Copy and Paste Adj_List_Graph class when Submitting
 }
