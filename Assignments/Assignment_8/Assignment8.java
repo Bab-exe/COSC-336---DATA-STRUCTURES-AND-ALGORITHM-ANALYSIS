@@ -11,7 +11,7 @@ class Assignment8{
     public static Adj_List_Graph inputFile(String filename) {
         try (Scanner console = new Scanner(new FileReader(filename))) {
             //node count
-            int N = console.nextInt();
+            final int N = console.nextInt();
             
             //birth of graph of size N
             final Adj_List_Graph GRAPH = new Adj_List_Graph(N);
@@ -44,5 +44,5 @@ class Assignment8{
    
     
     
-    //TODO: Copy and Paste Adj_List_Graph class when Submitting
+    
 }
