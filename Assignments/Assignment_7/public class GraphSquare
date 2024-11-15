@@ -1,0 +1,50 @@
+import java.io.*;
+
+// Driver class to test and run the graph code
+public class GraphSquare {
+    public static void main(String[] args) throws IOException {
+        // Input files with graph data
+        String[] inputFiles = {"input-7-1.txt", "input-7-2.txt"};
+        
+        for (String fileName : inputFiles) {
+            System.out.println("Processing file: " + fileName);
+            
+            // Read the file using BufferedReader
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            
+            // Read number of vertices
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            // Read the edge bits string
+            String edgeBits = reader.readLine().trim();
+            
+            // Initialize the graph with n vertices
+            Adj_List_Graph graph = new Adj_List_Graph(n);
+            
+            // Build the graph using edgeBits
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    // Determine if there's an edge between vertex i and j
+                    if (edgeBits.charAt(i * n + j) == '1') {
+                        graph.addEdge(i, j);
+                    }
+                }
+            }
+            
+            // Print the original graph's adjacency list
+            System.out.println("Original Graph Representations for " + fileName + ":");
+            graph.printGraph();
+            
+            // Compute and print G^2
+            System.out.println("\nGraph G^2:");
+            Adj_List_Graph G2 = graph.computeG2();
+            G2.printGraph();
+            
+            // Print a newline to separate results for different files
+            System.out.println("\n");
+            
+            // Close the reader
+            reader.close();
+        }
+    }
+}
