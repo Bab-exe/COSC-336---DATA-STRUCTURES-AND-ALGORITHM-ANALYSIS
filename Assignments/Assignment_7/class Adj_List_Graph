@@ -1,0 +1,122 @@
+import java.io.*;
+import java.util.*;
+
+// Class representing an adjacency list graph
+class Adj_List_Graph {
+    private int numVertices;
+    private ArrayList<LinkedList<Integer>> adjLists;
+
+    public Adj_List_Graph(int vertices) {
+        numVertices = vertices;
+        adjLists = new ArrayList<>(numVertices);
+        
+        for (int i = 0; i < numVertices; i++) {
+            adjLists.add(new LinkedList<>());
+        }
+    }
+
+    // Add an edge from vertex src to vertex dest
+    public void addEdge(int src, int dest) {
+        adjLists.get(src).add(dest);
+    }
+
+    // Get number of vertices
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    // Get adjacency lists
+    public ArrayList<LinkedList<Integer>> getAdjLists() {
+        return adjLists;
+    }
+
+    // Print the graph's adjacency list
+    public void printGraph() {
+        System.out.println("Adjacency List for G^2:");
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print("Vertex " + i + ": ");
+            for (Integer v : adjLists.get(i)) {
+                System.out.print(v + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class GraphSquare {
+
+    // Method to compute G^2 (2-step neighbors)
+    public static void computeG2(Adj_List_Graph G) {
+        int n = G.getNumVertices();
+        Adj_List_Graph G2 = new Adj_List_Graph(n);
+
+        // For each vertex u
+        for (int u = 0; u < n; u++) {
+            LinkedList<Integer> neighborsU = G.getAdjLists().get(u);
+            
+            // Add direct edges (1-step paths)
+            for (Integer v : neighborsU) {
+                G2.addEdge(u, v);  // Add direct edge (u, v) to G^2
+            }
+
+            // Add 2-step paths
+            for (Integer v : neighborsU) {
+                LinkedList<Integer> neighborsV = G.getAdjLists().get(v);
+                for (Integer w : neighborsV) {
+                    if (w != u) {  // Prevent adding loops (u, u)
+                        G2.addEdge(u, w);
+                    }
+                }
+            }
+        }
+
+        // Print the adjacency list for G^2
+        G2.printGraph();
+    }
+
+    // Main function to read graph input and process it
+    public static void main(String[] args) throws IOException {
+        // Input files with graph data
+        String[] inputFiles = {"input-7-1.txt", "input-7-2.txt"};
+        
+        for (String fileName : inputFiles) {
+            System.out.println("Processing file: " + fileName);
+            
+            // Read the file using BufferedReader
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            
+            // Read number of vertices
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            // Read the edge bits string
+            String edgeBits = reader.readLine().trim();
+            
+            // Initialize the graph with n vertices
+            Adj_List_Graph graph = new Adj_List_Graph(n);
+            
+            // Build the graph using edgeBits (create adjacency list for G)
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    // Determine if there's an edge between vertex i and j
+                    if (edgeBits.charAt(i * n + j) == '1') {
+                        graph.addEdge(i, j);
+                    }
+                }
+            }
+            
+            // Print the original graph's adjacency list
+            System.out.println("Original Graph Representations for " + fileName + ":");
+            graph.printGraph();
+            
+            // Compute and print G^2
+            System.out.println("\nGraph G^2:");
+            computeG2(graph);
+            
+            // Print a newline to separate results for different files
+            System.out.println("\n");
+            
+            // Close the reader
+            reader.close();
+        }
+    }
+}
