@@ -1,0 +1,198 @@
+import java.io.*;
+import java.util.*;
+
+// Class representing an adjacency list graph
+class Adj_List_Graph {
+    private int numVertices;  // Number of vertices in the graph
+    private ArrayList<LinkedList<Integer>> adjLists;  // List of adjacency lists for each vertex
+    private ArrayList<Edge> edges; // To store edges for incidence matrix
+
+    // Constructor to initialize the graph with a given number of vertices
+    public Adj_List_Graph(int vertices) {
+        numVertices = vertices;
+        adjLists = new ArrayList<>(numVertices);
+        edges = new ArrayList<>(); // Initialize edges list
+        for (int i = 0; i < numVertices; i++) {
+            adjLists.add(new LinkedList<>());
+        }
+    }
+
+    // Add an edge from vertex src to vertex dest
+    public void addEdge(int src, int dest) {
+        adjLists.get(src).add(dest);
+        edges.add(new Edge(src, dest)); // Add edge to the list of edges for incidence matrix
+    }
+
+    // Get number of vertices
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    // Get adjacency lists
+    public ArrayList<LinkedList<Integer>> getAdjLists() {
+        return adjLists;
+    }
+
+    // Get all edges
+    public ArrayList<Edge> getEdges() {
+        return edges;
+    }
+
+    // Print the graph's adjacency list
+    public void printAdjList() {
+        System.out.println("Adjacency List:");
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print("Vertex " + i + ": ");
+            for (Integer v : adjLists.get(i)) {
+                System.out.print(v + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Print the graph's adjacency matrix
+    public void printAdjMatrix() {
+        System.out.println("Adjacency Matrix:");
+        int[][] adjMatrix = new int[numVertices][numVertices];
+
+        // Fill adjacency matrix
+        for (int i = 0; i < numVertices; i++) {
+            for (Integer v : adjLists.get(i)) {
+                adjMatrix[i][v] = 1;
+            }
+        }
+
+        // Print the matrix
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                System.out.print(adjMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Print the graph's incidence matrix
+    public void printIncidenceMatrix() {
+        System.out.println("Incidence Matrix:");
+        int numEdges = edges.size();
+        int[][] incidenceMatrix = new int[numVertices][numEdges];
+
+        // Fill the incidence matrix
+        for (int e = 0; e < numEdges; e++) {
+            Edge edge = edges.get(e);
+            incidenceMatrix[edge.src][e] = 1; // mark vertex src as incident to edge e
+            incidenceMatrix[edge.dest][e] = 1; // mark vertex dest as incident to edge e
+        }
+
+        // Print the matrix
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numEdges; j++) {
+                System.out.print(incidenceMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // Method to compute G^2 (2-step neighbors)
+    public void computeG2() {
+        Adj_List_Graph G2 = new Adj_List_Graph(this.getNumVertices());
+        boolean[] visited = new boolean[this.getNumVertices()];
+
+        // Perform DFS to compute G^2
+        for (int v = 0; v < this.getNumVertices(); v++) {
+            if (!visited[v]) {
+                dfsForG2(v, visited, G2);
+            }
+        }
+
+        // Print the resulting G^2 graph
+        G2.printGraph();
+    }
+
+    // DFS function for computing G^2
+    private void dfsForG2(int v, boolean[] visited, Adj_List_Graph G2) {
+        visited[v] = true;
+
+        // Explore all neighbors of v
+        for (int u : adjLists.get(v)) {
+            // Add edge (v, u) to G^2
+            G2.addEdge(v, u);
+
+            // Add edges from v to all the neighbors of u (i.e., 2-step paths)
+            for (int w : adjLists.get(u)) {
+                if (w != v) {  // Prevent loops
+                    G2.addEdge(v, w);
+                }
+            }
+
+            // Continue DFS if not yet visited
+            if (!visited[u]) {
+                dfsForG2(u, visited, G2);
+            }
+        }
+    }
+
+    // Print the graph's adjacency list, matrix, and incidence matrix
+    public void printGraph() {
+        printAdjList();
+        printAdjMatrix();
+        printIncidenceMatrix();
+    }
+
+    // Edge class to represent an edge (for the incidence matrix)
+    static class Edge {
+        int src;
+        int dest;
+
+        Edge(int src, int dest) {
+            this.src = src;
+            this.dest = dest;
+        }
+    }
+
+    // Main method for reading graph data from a file and printing the graph and its representations
+    public static void main(String[] args) throws IOException {
+        // Input files with graph data
+        String[] inputFiles = {"input-7-1.txt", "input-7-2.txt"};
+        
+        for (String fileName : inputFiles) {
+            System.out.println("Processing file: " + fileName);
+            
+            // Read the file using BufferedReader
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            
+            // Read number of vertices
+            int n = Integer.parseInt(reader.readLine().trim());
+            
+            // Read the edge bits string
+            String edgeBits = reader.readLine().trim();
+            
+            // Initialize the graph with n vertices
+            Adj_List_Graph graph = new Adj_List_Graph(n);
+            
+            // Build the graph using edgeBits
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    // Determine if there's an edge between vertex i and j
+                    if (edgeBits.charAt(i * n + j) == '1') {
+                        graph.addEdge(i, j);
+                    }
+                }
+            }
+            
+            // Print the original graph representations
+            System.out.println("Original Graph Representations for " + fileName + ":");
+            graph.printGraph();
+            
+            // Compute and print G^2
+            System.out.println("\nGraph G^2:");
+            graph.computeG2();
+            
+            // Print a newline to separate results for different files
+            System.out.println("\n");
+            
+            // Close the reader
+            reader.close();
+        }
+    }
+}
