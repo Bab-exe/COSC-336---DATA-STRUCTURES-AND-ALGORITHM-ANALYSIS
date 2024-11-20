@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -27,32 +27,32 @@ class Assignment8 {
      * @param G the graph <br>
      * @param S the starting node with respect to the graphs <b>INDEX_OFFSET<b><br>
      * @return 2D array where index <b>0</b> is {@code dist[]} and index <b>1</b> is{@code npath[]}
-     * @throws NullPointerException if graph is null 
+     * @throws NullPointerException if graph is null
      */
     public static int[][] BFS(Adj_List_Graph G, final int S) throws NullPointerException {
         final int s = S - (G.INDEX_OFFSET); // the true starting index calculated from the index offset
 
         if (s < 0 || s >= G.n) {
-            System.err.printf("Starting Node (%d) is out of range: [%d, %d]\n", S, G.INDEX_OFFSET, G.n+1 - G.INDEX_OFFSET);
+            System.err.printf("Starting Node (%d) is out of range: [%d, %d]\n", S, G.INDEX_OFFSET,
+                G.n + 1 - G.INDEX_OFFSET);
             return null;
         }
 
         final int UNSEEN = Integer.MIN_VALUE; // used like infinity in notes 10
         final int N = G.n; // size
 
-        int[] dist = new int[N]; // keeps track of how far from the starting node and whether the node has been seen ; dist[v] = length of shortest path from s to v 
-        int[] npath = new int[N]; // n amount of shortest paths; npath[v] = number of shortest paths from s to v 
-        
-        Queue<Integer> queue = new LinkedList<>(); // indexes of node. nodes are queued and dequenced once
+        int[] dist = new int[N]; // keeps track of how far from the starting node and whether the node has been seen ; dist[v] = length of shortest path from s to v
+        int[] npath = new int[N]; // n amount of shortest paths; npath[v] = number of shortest paths from s to v
+
+        Queue<Integer> queue = new LinkedList<>(); // holds the nodes. nodes are queued and dequenced once
 
         // all nodes set to unseen / infinity
-        for (int v = 0; v < N; v++) 
+        for (int v = 0; v < N; v++)
             dist[v] = UNSEEN;
-            
-        dist[s] = 0; // distance from S to S is 0 
-        npath[s] = 1; // paths from S to S is 1
 
-        queue.add(s); // enqueue s
+        dist[s] = 0; // distance from S to S is 0
+        npath[s] = 1; // paths from S to S is 1
+        queue.add(s); // enqueueing s
 
         int u;
         while (!queue.isEmpty()) {
@@ -63,18 +63,18 @@ class Assignment8 {
                 if (dist[v] == UNSEEN) { // check if node has not been seen
                     queue.add(v); // javas enqueue
                     dist[v] = dist[u] + 1; // set node to seen and recording the distance
-                    npath[v] = npath[u]; // path from v to u stays the same 
+                    npath[v] = npath[u]; // path from v to u stays the same
                 }
-
                 else if (dist[v] == dist[u] + 1)
                     npath[v] += npath[u]; // number of shortest paths from v to u goes up by the number of shortest paths from u to v ; 1 + npath[u]
             }
         }
 
-        System.out.printf("\n[%d] Based Indexing:\n%d Shortest paths from %d to %d \n" ,
-                G.INDEX_OFFSET,
-                npath[N - 1],
-                S, (N - 1) + G.INDEX_OFFSET);
+        System.out.printf("\n[%d] Based Indexing:\n%d Shortest paths from %d to %d \n",
+            G.INDEX_OFFSET,
+            npath[N - 1],
+            S, (N - 1) + G.INDEX_OFFSET
+        );
 
         System.out.println("dist[]: " + Arrays.toString(dist));
         System.out.println("npath[]: " + Arrays.toString(npath));
@@ -136,4 +136,69 @@ class Assignment8 {
 
     }
 
+    public static class Adj_List_Graph {
+        int n; // no of nodes
+        ArrayList<ArrayList<Integer>> adj;
+
+        /**
+         * Exists for display purposes; <br>
+         * assignment 8 uses 1 based indexing <br>
+         * <code>
+         * INDEX_OFFSET = 0 would be 0 based indexing <br>
+         * INDEX_OFFSET = 1 would be 1 based indexing <br>
+         * etc
+         * </code>
+         */
+        final int INDEX_OFFSET; // added to control indexing when displaying graphs for assignment 8
+
+        // constructor taking as the single parameter the number of nodes
+        Adj_List_Graph(int no_nodes, final int INDEX_OFFSET) {
+            n = no_nodes;
+            adj = new ArrayList<ArrayList<Integer>>(n);
+            for (int i = 0; i < n; i++)
+                adj.add(new ArrayList<Integer>());
+
+            this.INDEX_OFFSET = INDEX_OFFSET; // this was added for displaying assignment 8
+        }
+
+        public Adj_List_Graph(int no_nodes) {
+            this(no_nodes, 1); // INDEX_OFFSET is set to 1 by default for assignment 8
+        }
+
+        // A utility function to add an edge in an
+        // undirected graph; for directed graph remove the second line
+        // adjusted for assignment 8
+        public void addEdge(final int U, final int V) {
+            int u = U - (this.INDEX_OFFSET); // adjusted u
+            int v = V - (this.INDEX_OFFSET); // adjusted v
+            adj.get(u).add(v);
+
+            // undirected for assignment 8
+            adj.get(v).add(u); // this line should be un-commented, if graph is undirected
+        }
+
+        /** A utility function to print the adjacency list representation of graph */
+        // adjusted for assignment 8
+        public void printGraph() {
+            for (int i = 0; i < n; i++) {
+                System.out.print("\nAdjacency list of vertex" + (i + this.INDEX_OFFSET) + "\thead");
+                for (int j : adj.get(i)) {
+                    System.out.print(" -> " + (j + this.INDEX_OFFSET));
+                }
+            }
+        }
+
+        /** A utility function to print the adjacency matrix representation of graph */
+        public void print_AdjacencyMatrix() {
+            System.out.println("\n\nAdjacency Matrix:");
+            for (int u = 0; u < n; u++) {
+                for (int v = 0; v < n; v++) {
+                    System.out.printf(
+                            "%d  ",
+                            adj.get(u).contains(v) ? 1 : 0);
+                }
+                System.out.println();
+            }
+        }
+    }
 }
