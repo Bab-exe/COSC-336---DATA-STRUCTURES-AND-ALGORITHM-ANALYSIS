@@ -7,13 +7,13 @@ public class Assignment8Tests extends Assignment8{
 
     /** used to print dist[] and npath[] in detail for submission */
     void print_Answer(int[] dist, int[] npath){
-        
+        System.err.println("[1] Based Indexing");
         for (int i = 0 ; i < dist.length ; i++)
-            System.err.printf("\ndist[%d] = " + dist[i] ,i);
+            System.err.printf("\ndist[%d] = " + dist[i] ,i+1);
         
         System.err.println();
         for (int i = 0 ; i < npath.length ; i++)
-            System.err.printf("\nnpath[%d] = " + npath[i] ,i);  
+            System.err.printf("\nnpath[%d] = " + npath[i] ,i+1);  
 
     }
     

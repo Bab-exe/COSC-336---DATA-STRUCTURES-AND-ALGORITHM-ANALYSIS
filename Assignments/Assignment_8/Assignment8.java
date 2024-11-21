@@ -21,7 +21,7 @@ class Assignment8 {
     }
 
     /**
-     * Bread First Search sourced from notes 10
+     * Breadth First Search sourced from notes 10
      * Program is required to <b>print</b> the two arrays dist[] and npath[].
      * 
      * @param G the graph <br>
@@ -70,9 +70,10 @@ class Assignment8 {
             }
         }
 
-        System.out.printf("\n[%d] Based Indexing:\n%d Shortest paths from %d to %d \n",
+        System.out.printf("\n[%d] Based Indexing:\n(%d) Shortest paths of length (%d) from %d to %d \n ",
             G.INDEX_OFFSET,
             npath[N - 1],
+            dist[N - 1],
             S, (N - 1) + G.INDEX_OFFSET
         );
 
