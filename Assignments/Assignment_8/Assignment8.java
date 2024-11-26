@@ -70,7 +70,7 @@ class Assignment8 {
             }
         }
 
-        System.out.printf("\n[%d] Based Indexing:\n(%d) Shortest paths of length (%d) from %d to %d \n ",
+        System.out.printf("\n[%d] Based Indexing:\n(%d) Shortest paths of length (%d) from %d to %d \n",
             G.INDEX_OFFSET,
             npath[N - 1],
             dist[N - 1],
