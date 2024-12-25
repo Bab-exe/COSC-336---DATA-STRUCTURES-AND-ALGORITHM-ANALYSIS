@@ -1,16 +1,22 @@
-name: Assignment 8 Tests
+name: Assignment 8
+
+env:
+  ASSIGNMENT_DIR: './Assignments/Assignment_8'  # Directory of Assignment
 
 on:
   workflow_dispatch:
   push:
     branches: 
       - main
-
+    paths:
+      - env.ASSIGNMENT_DIR
+      - '**.java'
+     
 jobs:
   Compile_and_Test:
     defaults:
       run:
-        working-directory: "./Assignments/Assignment_8"
+        working-directory: env.ASSIGNMENT_DIR
 
     runs-on: windows-latest
 
