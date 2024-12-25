@@ -181,9 +181,9 @@ class Assignment8 {
         public void printGraph() {
             for (int i = 0; i < n; i++) {
                 System.out.print("\nAdjacency list of vertex" + (i + this.INDEX_OFFSET) + "\thead");
-                for (int j : adj.get(i)) {
+                for (int j : adj.get(i)) 
                     System.out.print(" -> " + (j + this.INDEX_OFFSET));
-                }
+                
             }
         }
 
