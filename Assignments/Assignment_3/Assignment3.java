@@ -57,9 +57,8 @@ public class Assignment3 {
         while (i < n1) {
             A[k++] = L[i++];
         }
-        while (j < n2) {
+        while (j < n2) 
             A[k++] = R[j++];
-        }
 
         return pairs;
     }
