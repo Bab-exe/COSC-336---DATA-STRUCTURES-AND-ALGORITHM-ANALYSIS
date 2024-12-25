@@ -10,7 +10,7 @@ jobs:
   Compile:
     defaults:
       run:
-        working-directory: "COSC 336 - DATA STRUCTURES AND ALGORITHM ANALYSIS/Assignments/Assignment_8"
+        working-directory: "./Assignments/Assignment_8"
 
     runs-on: windows-latest
 
