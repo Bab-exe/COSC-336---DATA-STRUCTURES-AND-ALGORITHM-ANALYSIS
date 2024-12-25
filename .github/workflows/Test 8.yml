@@ -2,6 +2,7 @@ name: Test 8
 
 env:
   ASSIGNMENT_DIR: './Assignments/Assignment_8'  # Directory of Assignment
+  TEST_CLASS: Assignment8Tests.java
 
 on:
   workflow_dispatch:
@@ -30,7 +31,7 @@ jobs:
         distribution: 'temurin'  
 
     - name: Compile Assignment 8
-      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" "Assignment8Tests.java"
+      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" '${{ env.TEST_CLASS}}.java'
 
     - name: Test Assignment 8
-      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class Assignment8Tests
+      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class '${{ env.TEST_CLASS }}'
