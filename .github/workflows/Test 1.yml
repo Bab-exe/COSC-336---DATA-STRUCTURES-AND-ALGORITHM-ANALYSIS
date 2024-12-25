@@ -10,8 +10,7 @@ on:
     branches: 
       - main
     paths:
-      - './Assignments/Assignment_1' 
-      - '**.java'
+      - './Assignments/Assignment_1/**/*.java'
      
 jobs:
   Compile-and-Test:
