@@ -16,8 +16,7 @@ public class Assignment6 {
         preorder(test_data1);
             System.err.println("\n\nTest data 1 After leftRotation");
             preorder(leftRotate(test_data1));
-
-            
+    
         //first 25 of 6-1: (448,1000) (184,447) (43,187) (10,43) (4,8) (0,4) (3,3) (1,1) (4,1) (9,3) (5,2) (8,1) (32,34) (23,23) (11,12) (13,11) (12,2) (12,1) (16,8) (14,2) (15,1) (23,5) (21,4) (18,2) (20,1) 
         System.err.println("\n\nPreorder traversal of input6_1:");
         preorder(input6_1);
