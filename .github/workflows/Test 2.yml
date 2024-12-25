@@ -11,7 +11,7 @@ on:
     branches: 
       - main
     paths:
-      - env.ASSIGNMENT_DIR
+      - ${env.ASSIGNMENT_DIR}
       - '**.java'
      
 jobs:
