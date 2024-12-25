@@ -2,7 +2,8 @@ name: Test 2
 
 env:
   ASSIGNMENT_DIR: './Assignments/Assignment_2'  # Directory of Assignment
-  TEST_CLASS: Assignment2Tests # Test Class Name
+  TEST_CLASS1: Assignment2Task1UnitTests 
+  TEST_CLASS2: Assignment2Task2UnitTests 
 
 on:
   workflow_dispatch:
@@ -30,8 +31,12 @@ jobs:
         java-version: '22.0.2'
         distribution: 'temurin'  
 
-    - name: Compile ${{ env.TEST_CLASS}}
-      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" '${{ env.TEST_CLASS}}.java'
+    - name: Compile ${{ env.TEST_CLASS1}}
+      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" '${{ env.TEST_CLASS1}}.java'
+    - name: Test ${{ env.TEST_CLASS1}}
+      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class '${{ env.TEST_CLASS1 }}'
 
-    - name: Test ${{ env.TEST_CLASS}}
-      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class '${{ env.TEST_CLASS }}'
+    - name: Compile ${{ env.TEST_CLASS2}}
+      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" '${{ env.TEST_CLASS2}}.java'
+    - name: Test ${{ env.TEST_CLASS2}}
+      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class '${{ env.TEST_CLASS2 }}'

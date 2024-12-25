@@ -2,7 +2,7 @@ name: Test 1
 
 env:
   ASSIGNMENT_DIR: './Assignments/Assignment_1'  # Directory of Assignment
-  TEST_CLASS: Assignment1Tests # Test Class Name
+  TEST_CLASS: Assignment1UnitTests # Test Class Name
 
 on:
   workflow_dispatch:
