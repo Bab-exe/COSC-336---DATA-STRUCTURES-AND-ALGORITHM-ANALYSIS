@@ -1,7 +1,16 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import junit.framework.AssertionFailedError;
+
 public class Assignment4Tests extends Assignment4{
+
+
+    @Test
+    /** This assignment got a 20/100 */
+    public void Force_Fail(){
+        throw new AssertionFailedError("Assignment 4 was not extensively tested");
+    } 
     @Test 
     public void baseCase(){
         int[] empty = new int[0];
