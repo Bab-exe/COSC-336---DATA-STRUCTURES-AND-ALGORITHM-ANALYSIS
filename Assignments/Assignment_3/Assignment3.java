@@ -39,9 +39,8 @@ public class Assignment3 {
         for (int i = 0; i < n1; i++) {
             L[i] = A[p + i];
         }
-        for (int j = 0; j < n2; j++) {
+        for (int j = 0; j < n2; j++) 
             R[j] = A[mid + j];
-        }
 
         // Merge process
         int i = 0, j = 0, k = p;
