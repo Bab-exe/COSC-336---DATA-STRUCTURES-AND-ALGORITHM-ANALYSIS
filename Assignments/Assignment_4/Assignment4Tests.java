@@ -1,7 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class Assignment4Tests extends Assignment4{
     @Test 
     public void baseCase(){
