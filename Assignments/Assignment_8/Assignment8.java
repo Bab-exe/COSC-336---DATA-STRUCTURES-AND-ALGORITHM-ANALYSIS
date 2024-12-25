@@ -133,7 +133,6 @@ class Assignment8 {
         G2.addEdge(9, 10);// 9 -> 10
 
         return G2;
-
     }
 
     public static class Adj_List_Graph {
