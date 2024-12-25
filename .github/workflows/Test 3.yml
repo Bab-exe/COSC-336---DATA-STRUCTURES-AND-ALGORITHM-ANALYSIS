@@ -10,9 +10,8 @@ on:
     branches: 
       - main
     paths: 
-      - env.TEST_CLASS'/**/*.java'
+      - '${{env.TEST_CLASS}}/**/*.java'
       
-     
 jobs:
   Compile-and-Test:
     name: Compile and Test
