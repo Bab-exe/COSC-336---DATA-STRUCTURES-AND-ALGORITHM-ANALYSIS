@@ -30,8 +30,8 @@ jobs:
         java-version: '22.0.2'
         distribution: 'temurin'  
 
-    - name: Compile '${{ env.TEST_CLASS}}'
+    - name: Compile ${{ env.TEST_CLASS}}
       run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" '${{ env.TEST_CLASS}}.java'
 
-    - name: Test '${{ env.TEST_CLASS}}'
+    - name: Test ${{ env.TEST_CLASS}}
       run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class '${{ env.TEST_CLASS }}'
