@@ -35,8 +35,7 @@ public class Assignment6 {
     /** reads the file and converts it to an Node with children/binarytree */
     public static Node inputFile(String filename) {
         try (Scanner console = new Scanner(new FileReader(filename))) {
-            
-            
+                   
             final int N = console.nextInt();
             Node root = new Node(console.nextInt());
 
