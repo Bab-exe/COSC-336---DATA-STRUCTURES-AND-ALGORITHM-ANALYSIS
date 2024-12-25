@@ -42,7 +42,7 @@ public class Assignment1 {
      * O(n) : Starts array at index 1 and Loops through it and checks if the current bit is the same as the last one each time
      *          if current bit is same as the last one then count goes up by 1
      *          else: if the curret bit isnt the same as the last one then count and max are compared and count is reset to 1 
-     *              if count is greater than max then max is set to count
+     *              if the count is greater than max then max is set to count
     */
     public static int MaxContinuousSubsequence(int[] bits){
         if (bits.length == 0) return 0; //base case
