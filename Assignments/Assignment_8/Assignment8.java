@@ -23,7 +23,6 @@ class Assignment8 {
     /**
      * Breadth First Search sourced from notes 10
      * Program is required to <b>print</b> the two arrays dist[] and npath[].
-     * 
      * @param G the graph <br>
      * @param S the starting node with respect to the graphs <b>INDEX_OFFSET<b><br>
      * @return 2D array where index <b>0</b> is {@code dist[]} and index <b>1</b> is{@code npath[]}
