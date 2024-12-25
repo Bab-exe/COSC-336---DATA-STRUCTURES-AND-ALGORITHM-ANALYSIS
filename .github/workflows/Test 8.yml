@@ -1,0 +1,36 @@
+name: Test 8
+
+env:
+  ASSIGNMENT_DIR: './Assignments/Assignment_8'  # Directory of Assignment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+    paths:
+      - env.ASSIGNMENT_DIR
+      - '**.java'
+     
+jobs:
+  Compile-and-Test:
+    name: Compile and Test
+    defaults:
+      run:
+        working-directory: '${{ env.ASSIGNMENT_DIR }}'
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v4
+      with:
+        java-version: '22.0.2'
+        distribution: 'temurin'  
+
+    - name: Compile Assignment 8
+      run: javac -cp ".;lib\\junit-platform-console-standalone-1.11.3.jar" "Assignment8Tests.java"
+
+    - name: Test Assignment 8
+      run: java -jar lib\junit-platform-console-standalone-1.11.3.jar --class-path . --select-class Assignment8Tests
