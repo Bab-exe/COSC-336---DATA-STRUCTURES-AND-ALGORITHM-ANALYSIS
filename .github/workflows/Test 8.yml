@@ -9,9 +9,7 @@ on:
   push:
     branches: 
       - main
-    paths:
-      - env.ASSIGNMENT_DIR
-      - '**.java'
+    paths: './Assignments/Assignment_8/**/*.java'
      
 jobs:
   Compile-and-Test:
