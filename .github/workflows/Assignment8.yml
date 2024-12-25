@@ -17,7 +17,7 @@ jobs:
     name: Compile and Test
     defaults:
       run:
-        working-directory: '$ {env.ASSIGNMENT_DIR} '
+        working-directory: '${{ env.ASSIGNMENT_DIR }}'
 
     runs-on: windows-latest
 
