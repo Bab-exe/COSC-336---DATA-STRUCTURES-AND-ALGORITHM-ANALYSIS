@@ -25,7 +25,6 @@ public class Assignment1UnitTests {
         );
     }
 
-    
     /** 2,5,5,1,11,11,11,3,5,5,5,5,4,7. Now your program should return 4, because there are 4 consecutive values (namely four 5’s) and there is no longer subsequence of equal values.*/
     @Test public void sequence2(){
         int[] arr = {2,5,5,1,11,11,11,3,5,5,5,5,4,7};

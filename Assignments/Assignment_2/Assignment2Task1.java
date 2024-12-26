@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**Tamir Krief, Iaian Milton, Blessing Abumere */
 
 
@@ -9,7 +10,7 @@
 public class Assignment2Task1 {
 
     public static void main(String[] args) {
-        java.util.Scanner input = new java.util.Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         int[] user_sequence = Prompt_Sequence(input);
 
