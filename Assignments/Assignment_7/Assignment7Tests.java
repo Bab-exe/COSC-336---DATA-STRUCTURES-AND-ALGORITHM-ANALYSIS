@@ -31,7 +31,6 @@ public class Assignment7Tests extends Assignment7  {
         {0,0,0,0,0}
     });
    
-
     @Test
     public void File_Reading() {
         Adj_List_Graph test7_1 = inputFile("input-7-1.txt");

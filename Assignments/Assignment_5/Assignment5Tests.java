@@ -14,7 +14,6 @@ public class Assignment5Tests extends Assignment5 {
             final int expected = 1 + 14;
 
         assertEquals(expected, sumIncreasingSubsequence(arr));
-
     }
     /**  */
     @Test 

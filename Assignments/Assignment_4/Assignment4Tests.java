@@ -24,7 +24,6 @@ public class Assignment4Tests extends Assignment4{
         Assert.assertEquals(1,maxRevenue);
     }
 
-
     @Test 
     /** Data set 1: 1,5,8,9,10,17,17,20,24,30. (This is the example on page 364) */
     public void DataSet1(){

@@ -14,7 +14,6 @@ public class Assignment8Tests extends Assignment8{
         System.err.println();
         for (int i = 0 ; i < npath.length ; i++)
             System.err.printf("\nnpath[%d] = " + npath[i] ,i+1);  
-
     }
     
     /** given test for graph 1 ; testing graph 1 */

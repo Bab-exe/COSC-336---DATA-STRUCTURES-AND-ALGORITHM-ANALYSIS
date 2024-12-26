@@ -85,9 +85,6 @@ public class Assignment6Tests extends Assignment6{
                 
             assertEquals(80, root.right.key);
             assertNull(root.right.right);
-
-        
-        
     }
    
     @Test
