@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-  
   public class Adj_List_Graph{
     int n;  // no of nodes
     ArrayList<ArrayList<Integer> > adj; 
