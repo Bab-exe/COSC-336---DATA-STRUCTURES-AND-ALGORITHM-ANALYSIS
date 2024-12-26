@@ -19,7 +19,6 @@ public class Assignment1UnitTests {
         int[] arr = { 1, 0, 0, 0, 1, 1 };
         final long ANSWER = 3; 
 
-        
         assertEquals(
             ANSWER,
             Assignment1.MaxContinuousSubsequence(arr)

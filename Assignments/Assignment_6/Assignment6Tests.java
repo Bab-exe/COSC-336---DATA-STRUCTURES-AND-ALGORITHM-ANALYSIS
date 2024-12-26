@@ -45,7 +45,6 @@ public class Assignment6Tests extends Assignment6{
         final int KEY = root.key + 10; //right
         final int KEY2 = root.key - 10; //left
 
-
         assertNull(root.left);
         assertNull(root.right);
 
