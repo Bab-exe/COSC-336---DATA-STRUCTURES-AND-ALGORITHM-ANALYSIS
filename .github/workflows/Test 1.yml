@@ -5,12 +5,13 @@ env:
   TEST_CLASS: Assignment1UnitTests # Test Class Name
 
 on:
-  workflow_dispatch:
-  push:
-    branches: 
-      - main
-    paths:
-      - './Assignments/Assignment_1/**/*.java'
+    workflow_dispatch:
+    push:
+      branches: 
+        - main
+      paths: 
+        - 'Assignments/Assignment_1/**/*.java' # should be the same as env.ASSIGNMENT_DIR. for some stupid reason on.push.paths doesnt support variables
+        
      
 jobs:
   Compile-and-Test:

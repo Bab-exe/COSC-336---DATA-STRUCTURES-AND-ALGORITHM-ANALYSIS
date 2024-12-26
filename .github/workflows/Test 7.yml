@@ -1,7 +1,7 @@
 name: Test 7
 
 env:
-  ASSIGNMENT_DIR: './Assignments/Assignment_7'  # Directory of Assignment
+  ASSIGNMENT_DIR: 'Assignments/Assignment_7'  # Directory of Assignment
   TEST_CLASS: Assignment7Tests # Test Class Name
 
 on:
@@ -9,8 +9,9 @@ on:
   push:
     branches: 
       - main
-    paths: './Assignments/Assignment_7/**/*.java'
-     
+    paths: 
+      - 'Assignments/Assignment_7/**/*.java' # should be the same as env.ASSIGNMENT_DIR. for some stupid reason on.push.paths doesnt support variables
+      
 jobs:
   Compile-and-Test:
     name: Compile and Test

@@ -10,8 +10,8 @@ on:
     branches: 
       - main
     paths: 
-      - '${{env.TEST_CLASS}}/**/*.java'
-      
+      - 'Assignments/Assignment_3/**/*.java' # should be the same as env.ASSIGNMENT_DIR. for some stupid reason on.push.paths doesnt support variables
+     
 jobs:
   Compile-and-Test:
     name: Compile and Test

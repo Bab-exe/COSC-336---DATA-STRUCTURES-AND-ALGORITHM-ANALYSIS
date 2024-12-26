@@ -1,17 +1,18 @@
 name: Test 2
 
 env:
-  ASSIGNMENT_DIR: './Assignments/Assignment_2'  # Directory of Assignment
+  ASSIGNMENT_DIR: 'Assignments/Assignment_2'  # Directory of Assignment
   TEST_CLASS1: Assignment2Task1UnitTests 
   TEST_CLASS2: Assignment2Task2UnitTests 
 
 on:
-  workflow_dispatch:
-  push:
-    branches: 
-      - main
-    paths: './Assignments/Assignment_2/**/*.java'
-      
+    workflow_dispatch:
+    push:
+      branches: 
+        - main
+      paths: 
+        - 'Assignments/Assignment_2/**/*.java' # should be the same as env.ASSIGNMENT_DIR. for some stupid reason on.push.paths doesnt support variables
+        
      
 jobs:
   Compile-and-Test:
