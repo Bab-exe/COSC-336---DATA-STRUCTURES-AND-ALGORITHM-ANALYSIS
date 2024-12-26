@@ -4,8 +4,6 @@ import org.junit.Test;
 import junit.framework.AssertionFailedError;
 
 public class Assignment4Tests extends Assignment4{
-
-
     @Test
     /** This assignment got a 20/100 */
     public void Force_Fail(){
